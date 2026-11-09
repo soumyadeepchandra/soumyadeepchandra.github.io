@@ -1,31 +1,53 @@
 ---
-layout: about
+layout: home
 title: About
 permalink: /
-subtitle: Ph.D. Candidate, Electrical and Computer Engineering &middot; <a href='https://engineering.purdue.edu/NRL/Group'>Nanoelectronics Research Laboratory (NRL)</a>, Purdue University
 
-profile:
-  align: right
-  image: prof_pic.jpg # replace assets/img/prof_pic.jpg with your own photo
-  image_circular: false # crops the image to make it circular
-  more_info: >
-    <p>Nanoelectronics Research Laboratory</p>
-    <p>Elmore Family School of ECE</p>
-    <p>Purdue University</p>
-    <p>West Lafayette, IN</p>
+# ---- Hero ----
+eyebrow: Ph.D. Candidate · Purdue ECE · Graduating Spring 2027
+headline: Fast, physics-aware <span class="hl">thermal modeling</span> for next-generation chips.
+lede: >-
+  I build COMSOL finite-element workflows and physics-informed surrogate models that predict chip temperatures
+  orders of magnitude faster than FEM, for 3D heterogeneous integration, advanced packaging and AI for hardware.
+hero_image: prof_pic.jpg
+affiliations:
+  - Purdue University
+  - Nanoelectronics Research Lab (NRL)
+  - Advisor · Prof. Kaushik Roy
+  - Jadavpur University
 
-selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
+# ---- Stats strip ----
+stats:
+  - value: "9"
+    label: Publications
+  - value: "~20,000×"
+    label: Faster than FEM (Therm3D)
+  - value: "0.71 °C"
+    label: RMSE (2D-ThermAl, TCAD)
+  - value: "800+"
+    label: Students supported as Lead TA
 
-announcements:
-  enabled: true # includes a list of news items
-  scrollable: true # adds a vertical scroll bar if there are more than 3 news items
-  limit: 5 # leave blank to include all the news in the `_news` folder
+# ---- About card ----
+role: Ph.D. Candidate, ECE
+location: West Lafayette, Indiana
+lab: Nanoelectronics Research Laboratory
+lab_url: https://engineering.purdue.edu/NRL/Group
 
-latest_posts:
-  enabled: false
-  scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
-  limit: 3 # leave blank to include all the blog posts
+# ---- Skills (About section chips + Skills section) ----
+skills:
+  Thermal & Packaging: [3DHI, Advanced Packaging, FEM, Steady-State & Transient Analysis, Power & Hotspot Modeling]
+  Simulation & EDA: [COMSOL Multiphysics, Cadence Celsius, Cadence Virtuoso, HSPICE, Verilog]
+  Machine Learning: [PyTorch, TensorFlow, Neural Operators, Physics-Informed ML, Optimal Transport]
+  Programming: [Python, MATLAB, C/C++, Bash, Git, Linux]
+
+# ---- Research filters (project categories, in order) ----
+research_categories:
+  - key: thermal modeling & AI for hardware
+    label: Thermal Modeling & AI for Hardware
+  - key: video & scene understanding
+    label: Video & Scene Understanding
+
+news_limit: 6
 ---
 
 I am a Ph.D. candidate in Electrical and Computer Engineering at Purdue University, advised by <a href='https://engineering.purdue.edu/NRL/Group'>Prof. Kaushik Roy</a> in the Nanoelectronics Research Laboratory. I received my B.E. (Hons.) in Electronics and Telecommunication Engineering from Jadavpur University, India.

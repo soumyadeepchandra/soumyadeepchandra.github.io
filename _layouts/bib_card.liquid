@@ -1,0 +1,55 @@
+---
+---
+{%- include pub_image.liquid key=entry.key preview=entry.preview -%}
+{%- assign proceedings = 'inproceedings,incollection' | split: ',' -%}
+{%- if entry.type == 'article' -%}
+  {%- assign venue_full = entry.journal -%}
+{%- elsif proceedings contains entry.type -%}
+  {%- assign venue_full = entry.booktitle -%}
+{%- else -%}
+  {%- assign venue_full = entry.publisher -%}
+{%- endif -%}
+<article class="pub-card{% if pub_img == nil %} pub-card--noimg{% endif %}" id="pub-{{ entry.key }}" data-reveal>
+  <div class="pub-media">
+    {%- if pub_img -%}
+      <img src="{{ pub_img }}" alt="Figure from {{ entry.title | strip_html | escape }}" loading="lazy" decoding="async">
+    {%- else -%}
+      <div class="pub-placeholder" aria-hidden="true">
+        <span>{{ entry.abbr | default: entry.year }}</span>
+      </div>
+    {%- endif -%}
+  </div>
+  <div class="pub-body">
+    <div class="pub-meta">
+      {%- if entry.abbr -%}<span class="badge{% if entry.abbr contains 'Review' %} badge--muted{% endif %}">{{ entry.abbr }}</span>{%- endif -%}
+      <span class="pub-year">{{ entry.year }}</span>
+      {%- if entry.selected == 'true' -%}<span class="pub-star" title="Selected publication">Selected</span>{%- endif -%}
+    </div>
+    <h3 class="pub-title">{{ entry.title }}</h3>
+    <p class="pub-authors">
+      {%- for author in entry.author_array -%}
+        {%- assign author_last_name = author.last | regex_replace: '[*∗†‡§¶‖&^]', '' -%}
+        {%- assign author_last_html = author.last | regex_replace: '([*∗†‡§¶‖&^]+)', '<sup>\1</sup>' -%}
+        {%- assign is_self = false -%}
+        {%- if site.scholar.last_name contains author_last_name and site.scholar.first_name contains author.first -%}
+          {%- assign is_self = true -%}
+        {%- endif -%}
+        {%- unless forloop.first -%}{%- if forloop.last -%}{%- if forloop.length > 2 -%},{%- endif %} and {% else %}, {% endif -%}{%- endunless -%}
+        {%- if is_self -%}<strong>{{ author.first }} {{ author_last_html }}</strong>{%- else -%}{{ author.first }} {{ author_last_html }}{%- endif -%}
+      {%- endfor -%}
+    </p>
+    {%- if venue_full -%}<p class="pub-venue">{{ venue_full }}</p>{%- endif -%}
+    <div class="pub-links">
+      {%- if entry.html -%}<a class="chip-link" href="{% if entry.html contains '://' %}{{ entry.html }}{% else %}{{ entry.html | prepend: '/assets/html/' | relative_url }}{% endif %}" target="_blank" rel="noopener">Paper</a>{%- endif -%}
+      {%- if entry.pdf -%}<a class="chip-link" href="{% if entry.pdf contains '://' %}{{ entry.pdf }}{% else %}{{ entry.pdf | prepend: '/assets/pdf/' | relative_url }}{% endif %}" target="_blank" rel="noopener">PDF</a>{%- endif -%}
+      {%- if entry.arxiv -%}<a class="chip-link" href="https://arxiv.org/abs/{{ entry.arxiv }}" target="_blank" rel="noopener">arXiv</a>{%- endif -%}
+      {%- if entry.doi -%}<a class="chip-link" href="https://doi.org/{{ entry.doi }}" target="_blank" rel="noopener">DOI</a>{%- endif -%}
+      {%- if entry.code -%}<a class="chip-link" href="{{ entry.code }}" target="_blank" rel="noopener">Code</a>{%- endif -%}
+      {%- if entry.slides -%}<a class="chip-link" href="{% if entry.slides contains '://' %}{{ entry.slides }}{% else %}{{ entry.slides | prepend: '/assets/pdf/' | relative_url }}{% endif %}" target="_blank" rel="noopener">Slides</a>{%- endif -%}
+      {%- if entry.abstract -%}<button type="button" class="chip-link chip-link--ghost" data-abstract-toggle aria-expanded="false">Abstract</button>{%- endif -%}
+    </div>
+    {%- if entry.abstract -%}
+      <div class="pub-abstract" data-abstract><div><p>{{ entry.abstract }}</p></div></div>
+    {%- endif -%}
+  </div>
+</article>

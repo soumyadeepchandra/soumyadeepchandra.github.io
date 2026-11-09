@@ -5,6 +5,10 @@ description: Physics-aware neural operator for transient thermal modeling of 3D 
 importance: 1
 category: thermal modeling & AI for hardware
 related_publications: true
+paper: chandra2026therm3d
+venue: Under review · DATE
+result: 1.09 °C RMSE, ~10,000–20,000× faster than FEM
+tools: [Neural Operators, COMSOL, PyTorch, Physics-Informed ML]
 ---
 
 **Therm3D** is a physics-informed neural operator framework for near-real-time **steady-state and transient thermal analysis** of 3D heterogeneous integration (3DHI) systems. *(Under review)*

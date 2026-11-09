@@ -1,0 +1,20 @@
+{%- comment -%}
+  Sets `pub_img` to the image for a paper.
+  Params: include.key (bib key), include.preview (optional explicit file name or URL).
+  Lookup order: explicit preview -> assets/img/publication_preview/<key>.(png|jpg|jpeg|webp|gif|svg)
+{%- endcomment -%}
+{%- assign pub_img = nil -%}
+{%- if include.preview and include.preview != '' -%}
+  {%- if include.preview contains '://' -%}
+    {%- assign pub_img = include.preview -%}
+  {%- else -%}
+    {%- assign pub_img = include.preview | prepend: '/assets/img/publication_preview/' | relative_url -%}
+  {%- endif -%}
+{%- elsif include.key -%}
+  {%- for f in site.static_files -%}
+    {%- if f.basename == include.key and f.path contains '/assets/img/publication_preview/' -%}
+      {%- assign pub_img = f.path | relative_url -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}

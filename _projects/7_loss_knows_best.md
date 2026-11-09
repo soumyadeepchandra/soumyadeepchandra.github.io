@@ -5,6 +5,10 @@ description: Detecting mislabeled and noisy video annotations by exploiting mode
 importance: 5
 category: video & scene understanding
 related_publications: true
+paper: alwis2026loss
+venue: Under review
+result: Flags mislabeled video frames from loss trajectories
+tools: [Training Dynamics, Video Understanding, PyTorch]
 ---
 
 A learning-based approach for identifying **mislabeled and noisy training samples** by exploiting model-loss behavior, improving annotation-error detection and the reliability of supervised training data. *(Under review)*

@@ -5,6 +5,10 @@ description: Regularized partial Gromov–Wasserstein optimal transport for weak
 importance: 1
 category: video & scene understanding
 related_publications: true
+paper: chandra2025remap
+venue: Under review
+result: Robust alignment despite missing, reordered or unmatched steps
+tools: [Optimal Transport, Gromov–Wasserstein, PyTorch]
 ---
 
 **REMAP** is a weakly supervised procedure-learning framework that uses **regularized partial Gromov–Wasserstein optimal transport** to discover temporal correspondences across unaligned instructional videos, enabling robust alignment despite missing, reordered, or unmatched steps. *(Under review)*

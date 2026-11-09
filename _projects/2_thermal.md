@@ -6,6 +6,10 @@ importance: 2
 category: thermal modeling & AI for hardware
 github: https://github.com/soumyadeepchandra/2D-ThermAl
 related_publications: true
+paper: chandra2025thermal
+venue: IEEE TCAD 2025
+result: 0.71 °C RMSE, ~200× faster than COMSOL FEM
+tools: [U-Net, COMSOL, PyTorch, Physics-Informed ML]
 ---
 
 **2D-ThermAl** is a physics-informed deep-learning framework for fast **steady-state and transient thermal prediction** of integrated circuits, combining circuit-level power analysis with high-fidelity COMSOL FEM simulations. *(IEEE TCAD, 2025)*

@@ -6,6 +6,10 @@ importance: 3
 category: video & scene understanding
 github: https://github.com/soumyadeepchandra/ViPeR
 related_publications: true
+paper: chandra2025viper
+venue: IEEE Access 2025
+result: Surgical phase recognition from temporal video structure
+tools: [Video Transformers, Temporal Modeling, PyTorch]
 ---
 
 **ViPeR** is a video representation-learning approach for capturing **temporal structure and action-level information** in surgical videos, supporting downstream phase-recognition tasks. It reaches state-of-the-art accuracy on Cholec80 and the more challenging UroSlice dataset. *(IEEE Access, 2025)*
