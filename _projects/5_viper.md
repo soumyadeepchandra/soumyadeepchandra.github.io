@@ -12,4 +12,4 @@ related_publications: true
 
 [Paper](https://ieeexplore.ieee.org/document/11078244/) · [Code & dataset](https://github.com/soumyadeepchandra/ViPeR)
 
-{% bibliography --cited_in_order --query @*[key=chandra2025viper]* %}
+{% bibliography --query @*[key=chandra2025viper] %}

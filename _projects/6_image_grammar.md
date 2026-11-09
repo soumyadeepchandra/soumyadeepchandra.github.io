@@ -11,4 +11,4 @@ A structured visual-reasoning framework for modeling **compositional, semantic, 
 
 [Paper (arXiv)](https://arxiv.org/abs/2401.17497)
 
-{% bibliography --cited_in_order --query @*[key=chowdhury2024visual]* %}
+{% bibliography --query @*[key=chowdhury2024visual] %}

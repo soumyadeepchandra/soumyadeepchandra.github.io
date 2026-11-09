@@ -11,4 +11,4 @@ A learning-based approach for identifying **mislabeled and noisy training sample
 
 [Paper (arXiv)](https://arxiv.org/abs/2602.15154)
 
-{% bibliography --cited_in_order --query @*[key=alwis2026loss]* %}
+{% bibliography --query @*[key=alwis2026loss] %}

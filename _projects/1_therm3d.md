@@ -14,4 +14,4 @@ related_publications: true
 - Incorporated **energy conservation, boundary-condition enforcement, and source/hotspot-aware modeling** for physical consistency.
 - Achieved **1.09 °C RMSE** on unseen power maps over transient trajectories while delivering approximately **10,000–20,000× faster** inference than FEM, enabling rapid evaluation of 3DHI power and package configurations.
 
-{% bibliography --cited_in_order --query @*[key=chandra2026therm3d]* %}
+{% bibliography --query @*[key=chandra2026therm3d] %}

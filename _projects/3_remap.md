@@ -11,4 +11,4 @@ related_publications: true
 
 [Paper (arXiv)](https://arxiv.org/abs/2509.24382)
 
-{% bibliography --cited_in_order --query @*[key=chandra2025remap]* %}
+{% bibliography --query @*[key=chandra2025remap] %}

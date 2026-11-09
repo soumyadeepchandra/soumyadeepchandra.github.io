@@ -16,4 +16,4 @@ related_publications: true
 
 [Paper (arXiv)](https://arxiv.org/abs/2512.01163) · [Code & dataset](https://github.com/soumyadeepchandra/2D-ThermAl)
 
-{% bibliography --cited_in_order --query @*[key=chandra2025thermal]* %}
+{% bibliography --query @*[key=chandra2025thermal] %}

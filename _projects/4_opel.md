@@ -11,4 +11,4 @@ Co-developed **OPEL**, an **optimal-transport-guided procedure-learning framewor
 
 [Poster & paper](https://neurips.cc/virtual/2024/poster/93812) · [Slides](https://neurips.cc/media/neurips-2024/Slides/93812.pdf)
 
-{% bibliography --cited_in_order --query @*[key=chowdhury2024opel]* %}
+{% bibliography --query @*[key=chowdhury2024opel] %}
