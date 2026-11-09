@@ -11,8 +11,11 @@ Personal academic/job-market website for Soumyadeep Chandra (Ph.D. candidate, EC
 - A preview page (hand-built approximation of the theme) was published as a claude.ai artifact: https://claude.ai/artifact/7xfqMkbAWaBjwbtfvv8EWk
 
 ## Status
-- Jekyll was NOT built or tested: RubyGems was blocked in the chat workspace. **First task in Claude Code: `bundle install && bundle exec jekyll serve`** (or `docker compose up`) and fix any build errors.
-- Things most worth checking during the first build:
+- 2026-11-09: the site builds on GitHub Actions ("Deploy site" → `gh-pages`) with no errors. The local machine has no Ruby or Docker, so CI is the build loop: push to `main`, then watch `git ls-remote origin refs/heads/gh-pages` for a new commit (the GitHub API is often rate-limited from Purdue's IP).
+- Checked in the built HTML: Scholar and ORCID icons, theme color `#28699b`, photo with webp variants, month-year news dates, Research page anchors, 9 publications, and the CV page with its PDF.
+- Fixed: project pages showed no papers because `--cited_in_order` lists only cited entries. They now use `{% bibliography --query @*[key=...] %}`.
+- Live site returned 404 ("Site not found") on 2026-11-09: GitHub Pages source not yet set (Deploy step 3).
+- Original first-build checklist (all resolved):
   - `_config.yml`: `jekyll_get_json: []`. The JSON Resume source was turned off so the CV renders from `_data/cv.yml`. If the plugin complains about an empty list, comment out the key or the plugin.
   - `_projects/*.md` use `{% bibliography --cited_in_order --query @*[key=...]* %}`. Check they render; delete those lines if not.
   - `_pages/projects.md` (Research page, permalink `/research/`) uses categories containing `&`; anchors use `slugify`.
@@ -27,7 +30,7 @@ Personal academic/job-market website for Soumyadeep Chandra (Ph.D. candidate, EC
 - `_bibliography/papers.bib`: 9 papers. Selected: Therm3D, 2D-ThermAl, REMAP, OPEL.
 - `_news/`: 7 items (OPEL at NeurIPS Dec 2024 → ICML Golden Reviewer Jul 2026).
 - `_data/cv.yml`, `_data/socials.yml` (email chand133@purdue.edu, GitHub and LinkedIn soumyadeepchandra), `_data/repositories.yml` (2D-ThermAl, ViPeR).
-- `assets/img/prof_pic.jpg`: a placeholder "SC" image.
+- `assets/img/prof_pic.jpg`: the user's real photo (replaced the placeholder).
 - Removed: previous owner's news, papers, PDFs, photos, preview images, the example `_posts/` and `_projects/`, and `assets/json/resume.json`.
 
 ## Open items for the user
