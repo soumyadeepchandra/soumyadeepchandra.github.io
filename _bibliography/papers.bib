@@ -1,0 +1,111 @@
+---
+---
+
+@inproceedings{chandra2026therm3d,
+  bibtex_show={true},
+  abbr={Under Review},
+  title={Therm3D: Physics-Aware Neural Operator for Transient Thermal Modeling in 3D Heterogeneous Integration Systems},
+  author={Chandra, Soumyadeep and Chowdhury, Sayeed Shafayet and Roy, Kaushik},
+  booktitle={Under review at Design, Automation and Test in Europe (DATE)},
+  year={2026},
+  selected={true},
+  abstract={A physics-informed neural operator framework for near-real-time steady-state and transient thermal analysis of 3D heterogeneous integration (3DHI) systems. An automated COMSOL--Python FEM pipeline generates synthetic training data, and a point-cloud latent neural operator with coordinate-conditioned decoding and multi-stage autoregressive rollout performs long-horizon 3D thermal prediction. Energy conservation, boundary-condition enforcement and source/hotspot-aware modeling improve physical consistency. Therm3D achieves 1.09 °C RMSE on unseen power maps over transient trajectories while running roughly 10,000--20,000x faster than FEM, enabling rapid evaluation of 3DHI power and package configurations.}
+}
+
+@article{chandra2025thermal,
+  bibtex_show={true},
+  abbr={IEEE TCAD},
+  title={2D-ThermAl: Physics-Informed Framework for Thermal Analysis of Circuits using Generative AI},
+  author={Chandra, Soumyadeep and Chowdhury, Sayeed Shafayet and Roy, Kaushik},
+  journal={IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD)},
+  year={2025},
+  selected={true},
+  arxiv={2512.01163},
+  code={https://github.com/soumyadeepchandra/2D-ThermAl},
+  abstract={Thermal analysis is increasingly critical in modern integrated circuits, where non-uniform power dissipation and high transistor densities can cause rapid temperature spikes and reliability concerns. ThermAl is a physics-informed generative AI framework that identifies heat sources and estimates full-chip transient and steady-state thermal distributions directly from input activity profiles. It uses a hybrid U-Net with positional encoding and a physics-aware regularizer, trained on a dataset of 200+ COMSOL-simulated circuit configurations ranging from logic gates to complex designs. ThermAl achieves 0.71 °C RMSE and runs up to ~200x faster than conventional FEM tools, with full-scale error below 2.2% across a 25--95 °C operating range.}
+}
+
+@article{chandra2025remap,
+  bibtex_show={true},
+  abbr={Under Review},
+  title={REMAP: Regularized Matching and Partial Alignment of Video Embeddings},
+  author={Chandra, Soumyadeep and Roy, Kaushik},
+  journal={Under review at NeurIPS},
+  year={2026},
+  selected={true},
+  arxiv={2509.24382},
+  abstract={A weakly supervised procedure-learning framework that uses regularized partial Gromov--Wasserstein optimal transport to discover temporal correspondences across unaligned instructional videos, enabling robust alignment despite missing, reordered, or unmatched steps.}
+}
+
+@article{alwis2026loss,
+  bibtex_show={true},
+  abbr={Under Review},
+  title={Loss Knows Best: Detecting Annotation Errors in Videos via Loss Trajectories},
+  author={Alwis*, P. and Chandra*, Soumyadeep and Ravikumar, D. and Roy, Kaushik},
+  journal={Under review at WACV},
+  year={2026},
+  arxiv={2602.15154},
+  abstract={A learning-based approach for identifying mislabeled and noisy training samples in video datasets by exploiting model-loss behavior over training, improving annotation-error detection and the reliability of supervised training data.}
+}
+
+@article{chandra2025viper,
+  bibtex_show={true},
+  abbr={IEEE Access},
+  title={ViPeR: Vision-Based Surgical Phase Recognition},
+  author={Chandra, Soumyadeep and Chowdhury, Sayeed Shafayet and Yong, Courtney and Jeng, Ginnie and Mahenthiran, Ashorne and Morris, Kostantinos E. and Love, Harrison L. and Sundaram, Chandru P. and Roy, Kaushik},
+  journal={IEEE Access},
+  year={2025},
+  html={https://ieeexplore.ieee.org/document/11078244/},
+  code={https://github.com/soumyadeepchandra/ViPeR},
+  abstract={Surgical phase recognition is a critical yet challenging problem, hindered by the scarcity of well-annotated medical datasets and the substantial inter- and intra-procedural variation of surgical workflows. ViPeR is a vision-based model for phase recognition that achieves state-of-the-art performance of 91.7% on Cholec80 and 66.4% on UroSlice, a more challenging dataset with irregular phase durations, non-standardized phase order, and a smaller sample size.}
+}
+
+@inproceedings{chowdhury2024opel,
+  bibtex_show={true},
+  abbr={NeurIPS},
+  title={OPEL: Optimal Transport Guided ProcedurE Learning},
+  author={Chowdhury, Sayeed Shafayet and Chandra, Soumyadeep and Roy, Kaushik},
+  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},
+  year={2024},
+  selected={true},
+  html={https://neurips.cc/virtual/2024/poster/93812},
+  slides={https://neurips.cc/media/neurips-2024/Slides/93812.pdf},
+  doi={10.52202/079017-1915},
+  abstract={Procedure learning is the task of identifying the key-steps of a task and determining their logical order, given several videos of the same task. OPEL treats video frames as samples from an unknown distribution and frames their distance calculation as an optimal transport problem, relaxing the frame-to-frame and monotonic-alignment assumptions of prior work. Optimality and temporal priors regularize the transport plan. OPEL significantly outperforms the state of the art on both egocentric and third-person procedure-learning benchmarks.}
+}
+
+@article{chowdhury2024visual,
+  bibtex_show={true},
+  abbr={IEEE Access},
+  title={Toward Visual Syntactical Understanding},
+  author={Chowdhury, Sayeed Shafayet and Chandra, Soumyadeep and Roy, Kaushik},
+  journal={IEEE Access},
+  volume={12},
+  year={2024},
+  doi={10.1109/ACCESS.2024.3397061},
+  arxiv={2401.17497},
+  abstract={An image can be viewed as a visual "sentence" whose semantic parts act as "words". This work shows that state-of-the-art CNNs and vision transformers fail to discriminate between syntactically correct and incorrect images (e.g., a face with eyes and nose swapped), and proposes an unsupervised three-stage framework — detecting the "words", masking and reconstructing them with a BERT-style masked autoencoder, and comparing original and reconstructed parts — to determine syntactic correctness, reaching 92.10% and 90.89% accuracy on CelebA and AFHQ.}
+}
+
+@article{chandra2023axonal,
+  bibtex_show={true},
+  abbr={Front. Cell. Neurosci.},
+  title={Axonal Transport During Injury on a Theoretical Axon},
+  author={Chandra, Soumyadeep and Chatterjee, Rounak and Olmsted, Zachary T. and Mukherjee, Amitava and Paluh, Janet L.},
+  journal={Frontiers in Cellular Neuroscience},
+  volume={17},
+  pages={1215945},
+  year={2023},
+  doi={10.3389/fncel.2023.1215945},
+  html={https://www.frontiersin.org/journals/cellular-neuroscience/articles/10.3389/fncel.2023.1215945/full},
+  abstract={DyNAMO (Dynamic Nanoscale Axonal MT Organization) is a biologically realistic theoretical axon framework used to simulate multi-kinesin traffic in response to focused or distributed microtubule-network injuries, quantifying motor progression, crowding, dissociation/reassociation and output patterns relevant to axonopathies.}
+}
+
+@article{mazumder2022hadamard,
+  bibtex_show={true},
+  abbr={JSIR},
+  title={Parallel Hardware Implementation of Walsh Hadamard Transform},
+  author={Mazumder, P. and Chandra, Soumyadeep and Rana, S. and Mukhopadhyay, M. and Naskar, M. K.},
+  journal={Journal of Scientific \& Industrial Research},
+  year={2022}
+}

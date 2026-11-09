@@ -1,0 +1,105 @@
+- title: General Information
+  type: map
+  contents:
+    - name: Full Name
+      value: Soumyadeep Chandra
+    - name: Email
+      value: chand133@purdue.edu
+    - name: LinkedIn
+      value: https://www.linkedin.com/in/soumyadeepchandra/
+    - name: GitHub
+      value: https://github.com/soumyadeepchandra
+    - name: Location
+      value: West Lafayette, IN, USA
+    - name: Expected Graduation
+      value: Spring 2027
+
+- title: Research Focus
+  type: list
+  contents:
+    - Semiconductor thermal modeling, 3D heterogeneous integration (3DHI), advanced packaging, and AI for hardware.
+    - High-fidelity COMSOL finite-element simulation workflows and physics-informed surrogate models for fast steady-state and transient chip-temperature prediction.
+    - Background in VLSI design, circuit power and thermal analysis, and physics-informed machine learning.
+
+- title: Education
+  type: time_table
+  contents:
+    - title: Ph.D. in Electrical and Computer Engineering
+      institution: Purdue University, West Lafayette, IN
+      year: 2021 – Present
+      description:
+        - "GPA: 3.88/4.00"
+        - "Advisor: Prof. Kaushik Roy"
+        - "Coursework: AI for Hardware, MOS VLSI Design, Advanced VLSI, Algorithms, Deep Learning, Reinforcement Learning"
+    - title: B.E. (Hons.) in Electronics and Telecommunication Engineering
+      institution: Jadavpur University, Kolkata, India
+      year: 2016 – 2020
+      description:
+        - "GPA: 9.48/10.00"
+
+- title: Research Experience
+  type: time_table
+  contents:
+    - title: Graduate Research Assistant
+      institution: Nanoelectronics Research Lab, Purdue University, West Lafayette, IN
+      year: 2023 – Present
+      description:
+        - "Therm3D (under review): physics-aware neural operator for steady-state and transient thermal analysis of 3DHI systems; automated COMSOL–Python FEM data pipeline; point-cloud latent neural operator with autoregressive rollout; 1.09 °C RMSE at ~10,000–20,000× faster than FEM."
+        - "2D-ThermAl (IEEE TCAD 2025): physics-informed hybrid U-Net for circuit thermal prediction on 200+ COMSOL-simulated configurations; 0.71 °C RMSE at ~200× faster than COMSOL FEM; full-scale RMSE below 2.2% over 25–95 °C."
+        - "Video & scene understanding: REMAP (partial Gromov–Wasserstein OT for procedure learning), OPEL (NeurIPS 2024), ViPeR (IEEE Access 2025)."
+        - "Semantic & syntactic understanding: Image Grammar (IEEE Access 2024), Loss Knows Best (annotation-error detection, under review)."
+
+- title: Technical Skills
+  type: map
+  contents:
+    - name: Modeling
+      value: 3D Heterogeneous Integration (3DHI), Thermal Management, Finite Element Method (FEM), Steady-State and Transient Thermal Analysis, Power and Hotspot Modeling
+    - name: Simulation & EDA
+      value: COMSOL Multiphysics, Cadence Celsius, Cadence Virtuoso, HSPICE, Verilog
+    - name: Programming
+      value: Python, MATLAB, Git, Bash, C, C++, Linux, Numerical Modeling
+    - name: Machine Learning
+      value: PyTorch, TensorFlow, Neural Operators, Physics-Informed ML, Deep Learning
+
+- title: Teaching Experience
+  type: time_table
+  contents:
+    - title: Graduate Teaching Assistant
+      institution: Purdue University, West Lafayette, IN
+      year: 2021 – Present
+      description:
+        - "AI for Hardware: graduate-level instruction covering ML/hardware co-design, AI accelerators, model optimization, and hardware-aware learning."
+        - "MOS VLSI Design: supported graduate circuit and layout projects in Cadence, including Wallace-tree multipliers and neuromorphic computing designs."
+        - "Electrical Engineering Fundamentals: Lead Graduate TA for an 800+ student undergraduate course, coordinating a team of graduate and undergraduate TAs."
+
+- title: Prior Work Experience
+  type: time_table
+  contents:
+    - title: Assistant Consultant
+      institution: PricewaterhouseCoopers, Kolkata, India
+      year: 2020
+      description:
+        - Developed frontend and backend enterprise systems using Microsoft Azure for a large retail client.
+    - title: Research Assistant
+      institution: Jadavpur University, Kolkata, India
+      year: 2017 – 2020
+      description:
+        - Developed mathematical models of molecular motor transport in neuronal axons (Frontiers in Cellular Neuroscience, 2023).
+        - Developed tensor-product-based algorithms for hardware implementation of discrete transforms using FPGA architectures (J. Scientific & Industrial Research, 2022).
+
+- title: Honors & Awards
+  type: time_table
+  contents:
+    - title: Finalist, Qualcomm Innovation Fellowship (QIF)
+      year: 2026
+    - title: Golden Reviewer, ICML
+      year: 2026
+    - title: Estus H. and Vashti L. Magoon Award for Excellence in Teaching, Purdue University
+      year: 2022
+    - title: PwC Best Intern Project (Hardware)
+      year: 2019
+
+- title: Reviewer Service
+  type: list
+  contents:
+    - NeurIPS, AAAI (Program Committee), ICLR, ICML, WACV, MICCAI, TMI, TCDS, ISCAS
