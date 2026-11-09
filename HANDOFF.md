@@ -14,7 +14,7 @@ Personal academic/job-market website for Soumyadeep Chandra (Ph.D. candidate, EC
 - 2026-11-09: the site builds on GitHub Actions ("Deploy site" → `gh-pages`) with no errors. The local machine has no Ruby or Docker, so CI is the build loop: push to `main`, then watch `git ls-remote origin refs/heads/gh-pages` for a new commit (the GitHub API is often rate-limited from Purdue's IP).
 - Checked in the built HTML: Scholar and ORCID icons, theme color `#28699b`, photo with webp variants, month-year news dates, Research page anchors, 9 publications, and the CV page with its PDF.
 - Fixed: project pages showed no papers because `--cited_in_order` lists only cited entries. They now use `{% bibliography --query @*[key=...] %}`.
-- Live site returned 404 ("Site not found") on 2026-11-09: GitHub Pages source not yet set (Deploy step 3).
+- Live at https://soumyadeepchandra.github.io since 2026-11-09. Pages source is `gh-pages` / root. A `.nojekyll` file (listed under `include:` in `_config.yml`) stops Pages from re-running Jekyll on the prebuilt site; without it, the "pages-build-deployment" run fails. CLAUDE.md, HANDOFF.md and requirements.txt are excluded from the build so they aren't published.
 - Original first-build checklist (all resolved):
   - `_config.yml`: `jekyll_get_json: []`. The JSON Resume source was turned off so the CV renders from `_data/cv.yml`. If the plugin complains about an empty list, comment out the key or the plugin.
   - `_projects/*.md` use `{% bibliography --cited_in_order --query @*[key=...]* %}`. Check they render; delete those lines if not.
