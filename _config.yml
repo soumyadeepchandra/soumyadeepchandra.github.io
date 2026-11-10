@@ -9,11 +9,11 @@ last_name: Chandra
 contact_note: >
   You can contact me via email or through my social media accounts.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Personal website of Soumyadeep Chandra, Ph.D. researcher at Purdue University working on semiconductor thermal modeling, 3D heterogeneous integration, advanced packaging, and AI for hardware.
+  Personal website of Soumyadeep Chandra, Ph.D. researcher at Purdue University working on thermal modeling for 3D heterogeneous integration and AI for hardware, and on video and scene understanding.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
-keywords: thermal modeling, 3D heterogeneous integration, 3DHI, advanced packaging, neural operators, physics-informed machine learning, AI for hardware, COMSOL, Purdue # add your own keywords or leave empty
+keywords: thermal modeling, 3D heterogeneous integration, 3DHI, advanced packaging, neural operators, physics-informed machine learning, AI for hardware, COMSOL, video understanding, procedure learning, optimal transport, scene understanding, Purdue # add your own keywords or leave empty
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: 🔥 # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 

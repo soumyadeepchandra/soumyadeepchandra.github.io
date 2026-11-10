@@ -2,6 +2,7 @@
 layout: post
 date: 2024-12-12 00:00:00-0500
 inline: true
+kind: paper
 related_posts: false
 ---
 

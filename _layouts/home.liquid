@@ -1,397 +1,271 @@
-<!doctype html>
-<html lang="{{ site.lang | default: 'en' }}">
-  <head>
-    {% include metadata.liquid %}
-    <script>
-      (function () {
-        var s;
-        try { s = localStorage.getItem("theme"); } catch (e) {}
-        var dark = s === "dark" || ((s !== "light") && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
-        document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
-        document.documentElement.classList.add("js");
-      })();
-    </script>
-    {% if site.icon.size <= 4 %}
-      <link rel="shortcut icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>{{ site.icon }}</text></svg>">
-    {% endif %}
-    <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="{{ '/assets/css/academicons.min.css' | relative_url }}">
-    <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}?v={{ site.time | date: '%s' }}">
-  </head>
+---
+layout: shell
+---
+{%- assign data = site.data.profiles -%}
+{%- assign prof = data[page.profile] | default: data.both -%}
+{%- assign socials = site.data.socials -%}
+{%- capture full_name %}{{ site.first_name }} {{ site.last_name }}{% endcapture -%}
+{%- assign cv = site.data.cv -%}
+{%- assign edu = cv | where: 'title', 'Education' | first -%}
+{%- assign research_exp = cv | where: 'title', 'Research Experience' | first -%}
+{%- assign teaching = cv | where: 'title', 'Teaching Experience' | first -%}
+{%- assign prior = cv | where: 'title', 'Prior Work Experience' | first -%}
+{%- assign honors = cv | where: 'title', 'Honors & Awards' | first -%}
+{%- assign service = cv | where: 'title', 'Reviewer Service' | first -%}
+{%- assign img_base = '/assets/img/prof_pic' -%}
+{%- assign cv_pdf = '/assets/pdf/Soumyadeep_Chandra_CV.pdf' | relative_url -%}
 
-  {%- assign socials = site.data.socials -%}
-  {%- capture full_name %}{{ site.first_name }} {{ site.last_name }}{% endcapture -%}
-  {%- assign cv = site.data.cv -%}
-  {%- assign edu = cv | where: 'title', 'Education' | first -%}
-  {%- assign research_exp = cv | where: 'title', 'Research Experience' | first -%}
-  {%- assign teaching = cv | where: 'title', 'Teaching Experience' | first -%}
-  {%- assign prior = cv | where: 'title', 'Prior Work Experience' | first -%}
-  {%- assign honors = cv | where: 'title', 'Honors & Awards' | first -%}
-  {%- assign service = cv | where: 'title', 'Reviewer Service' | first -%}
-
-  <body>
-    <a class="skip-link" href="#about">Skip to content</a>
-
-    <!-- ============ NAV ============ -->
-    <header class="nav" data-nav>
-      <div class="nav-inner">
-        <a class="brand" href="#top" data-scroll-top>
-          <span class="brand-mark">{{ site.first_name | slice: 0 }}{{ site.last_name | slice: 0 }}</span>
-          <span class="brand-name">{{ full_name }}</span>
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow hero-in" style="--d: 0s">{{ prof.eyebrow }}</span>
+      <h1 class="hero-title hero-in" style="--d: .08s">{{ full_name }}</h1>
+      <p class="hero-headline hero-in" style="--d: .16s">{{ prof.headline }}</p>
+      <p class="hero-lede hero-in" style="--d: .24s">{{ prof.lede }}</p>
+      <div class="hero-ctas hero-in" style="--d: .32s">
+        <a class="btn btn-primary" href="#research">
+          View research
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
-        <nav class="nav-links" aria-label="Sections">
-          <a href="#about" data-nav-link>About</a>
-          <a href="#background" data-nav-link>Background</a>
-          <a href="#research" data-nav-link>Research</a>
-          <a href="#publications" data-nav-link>Publications</a>
-          <a href="#news" data-nav-link>News</a>
-          <a href="#contact" data-nav-link>Contact</a>
-        </nav>
-        <div class="nav-actions">
-          <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle dark mode">
-            <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-            <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-          </button>
-          <a class="btn btn-sm btn-primary nav-cv" href="{{ '/cv/' | relative_url }}">CV</a>
-          <button class="icon-btn nav-burger" type="button" data-menu-toggle aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
+        <a class="btn btn-ghost" href="{{ '/publications/' | relative_url }}">Publications</a>
       </div>
-      <div class="nav-progress" data-progress aria-hidden="true"></div>
-      <nav class="mobile-menu" id="mobile-menu" data-menu aria-label="Sections">
-        <a href="#about">About</a>
-        <a href="#background">Background</a>
-        <a href="#research">Research</a>
-        <a href="#publications">Publications</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-        <a href="{{ '/cv/' | relative_url }}">CV</a>
-      </nav>
+      <ul class="affil hero-in" style="--d: .4s" aria-label="Affiliations">
+        {% for a in data.affiliations %}<li>{{ a }}</li>{% endfor %}
+      </ul>
+    </div>
+    <div class="hero-side hero-pop">
+      <div class="hero-photo">
+        <div class="hero-photo-glow" aria-hidden="true"></div>
+        <picture>
+          <source type="image/webp" srcset="{{ img_base | append: '-480.webp' | relative_url }}">
+          <img src="{{ img_base | append: '.jpg' | relative_url }}" alt="Portrait of {{ full_name }}" width="200" height="200" fetchpriority="high">
+        </picture>
+      </div>
+      <div class="hero-social" aria-label="Contact links">
+        {% if socials.email %}<a href="mailto:{{ socials.email }}" title="Email" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>{% endif %}
+        {% if socials.scholar_userid %}<a href="https://scholar.google.com/citations?user={{ socials.scholar_userid }}" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar"><i class="ai ai-google-scholar"></i></a>{% endif %}
+        {% if socials.linkedin_username %}<a href="https://www.linkedin.com/in/{{ socials.linkedin_username }}" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>{% endif %}
+        {% if socials.github_username %}<a href="https://github.com/{{ socials.github_username }}" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>{% endif %}
+        {% if socials.orcid_id %}<a href="https://orcid.org/{{ socials.orcid_id }}" target="_blank" rel="noopener" title="ORCID" aria-label="ORCID"><i class="ai ai-orcid"></i></a>{% endif %}
+        <a href="{{ cv_pdf }}" target="_blank" rel="noopener" title="CV (PDF)" aria-label="CV (PDF)"><i class="fa-solid fa-file-lines"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section" id="about">
+  <div class="container about-wrap" data-reveal>
+    <span class="kicker">About</span>
+    <h2 class="section-title">{{ prof.about_title }}</h2>
+    <div class="prose">{{ prof.bio | markdownify }}</div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section class="section section-alt" id="skills">
+  <div class="container">
+    <header class="section-head section-head--center" data-reveal>
+      <h2 class="section-title">Skills</h2>
+    </header>
+    <div class="skills-grid">
+      {% for group_name in prof.skills_order %}
+        {% assign items = data.skills[group_name] %}
+        {% if items %}
+        <div class="skill-card" data-reveal>
+          <h3>{{ group_name }}</h3>
+          <div class="skill-chips">{% for s in items %}<span>{{ s }}</span>{% endfor %}</div>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ============ BACKGROUND ============ -->
+<section class="section" id="background">
+  <div class="container">
+    <header class="section-head" data-reveal>
+      <span class="kicker">Background</span>
+      <h2 class="section-title">Education &amp; Experience</h2>
     </header>
 
-    <main id="top">
-      <!-- ============ HERO ============ -->
-      <section class="hero">
-        <div class="hero-bg" aria-hidden="true"></div>
-        <div class="container hero-grid">
-          <div class="hero-copy">
-            <span class="eyebrow hero-in" style="--d: 0s">{{ page.eyebrow }}</span>
-            <h1 class="hero-title hero-in" style="--d: .08s">{{ full_name }}</h1>
-            <p class="hero-headline hero-in" style="--d: .16s">{{ page.headline }}</p>
-            <p class="hero-lede hero-in" style="--d: .24s">{{ page.lede }}</p>
-            <div class="hero-ctas hero-in" style="--d: .32s">
-              <a class="btn btn-primary" href="#research">
-                View research
-                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-              </a>
-              <a class="btn btn-ghost" href="#publications">Publications</a>
-              <a class="btn btn-ghost" href="{{ '/assets/pdf/Soumyadeep_Chandra_CV.pdf' | relative_url }}" target="_blank" rel="noopener">Download CV</a>
-            </div>
-          </div>
-          <div class="hero-photo hero-pop">
-            <div class="hero-photo-glow" aria-hidden="true"></div>
-            {% assign hero_base = page.hero_image | split: '.' | first | prepend: '/assets/img/' %}
-            <picture>
-              <source type="image/webp" srcset="{{ hero_base | append: '-480.webp' | relative_url }} 480w, {{ hero_base | append: '-800.webp' | relative_url }} 800w" sizes="(max-width: 860px) 220px, 380px">
-              <img src="{{ page.hero_image | prepend: '/assets/img/' | relative_url }}" alt="Portrait of {{ full_name }}" width="520" height="520" fetchpriority="high">
-            </picture>
-          </div>
-        </div>
-        <div class="container">
-          <ul class="affil hero-in" style="--d: .45s" aria-label="Affiliations">
-            {% for a in page.affiliations %}<li>{{ a }}</li>{% endfor %}
-          </ul>
-        </div>
-      </section>
-
-      <!-- ============ STATS ============ -->
-      <section class="stats" aria-label="Highlights">
-        <div class="container stats-grid" data-stagger>
-          {% for s in page.stats %}
-            <div class="stat" data-reveal>
-              <div class="stat-value" data-count>{{ s.value }}</div>
-              <div class="stat-label">{{ s.label }}</div>
-            </div>
+    <div class="bg-grid">
+      <div>
+        <h3 class="col-title">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M21.4 10.9a1 1 0 0 0 0-1.8l-8.6-3.9a2 2 0 0 0-1.7 0L2.6 9.1a1 1 0 0 0 0 1.8l8.6 3.9a2 2 0 0 0 1.7 0Z"/><path d="M22 10v6M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
+          Education
+        </h3>
+        <ol class="timeline">
+          {% for e in edu.contents %}
+            <li class="tl-item" data-reveal data-dir="left">
+              <span class="tl-dot" aria-hidden="true"></span>
+              <div class="tl-card">
+                <span class="tl-years">{{ e.year }}</span>
+                <h4>{{ e.title }}</h4>
+                <p class="tl-org">{{ e.institution }}</p>
+                {% if e.description %}<ul class="tl-points">{% for d in e.description %}<li>{{ d | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}</ul>{% endif %}
+              </div>
+            </li>
           {% endfor %}
-        </div>
-      </section>
+        </ol>
 
-      <!-- ============ ABOUT ============ -->
-      <section class="section" id="about">
-        <div class="container about-grid">
-          <aside class="profile-card" data-reveal data-dir="left">
-            <div class="profile-glow" aria-hidden="true"></div>
-            <div class="profile-head">
-              <img class="profile-avatar" src="{{ hero_base | append: '-480.webp' | relative_url }}" alt="" width="64" height="64" loading="lazy">
-              <div>
-                <div class="profile-name">{{ full_name }}</div>
-                <div class="profile-role">{{ page.role }}</div>
-              </div>
-            </div>
-            <ul class="profile-list">
-              <li>
-                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                {{ page.location }}
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>
-                <a href="{{ page.lab_url }}" target="_blank" rel="noopener">{{ page.lab }}</a>
-              </li>
-              {% if socials.email %}
-              <li>
-                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-9 5.7a2 2 0 0 1-2 0L2 7"/></svg>
-                <a href="mailto:{{ socials.email }}">{{ socials.email }}</a>
-              </li>
-              {% endif %}
-            </ul>
-            <div class="profile-socials">
-              {% if socials.scholar_userid %}<a href="https://scholar.google.com/citations?user={{ socials.scholar_userid }}" target="_blank" rel="noopener" aria-label="Google Scholar"><i class="ai ai-google-scholar"></i></a>{% endif %}
-              {% if socials.orcid_id %}<a href="https://orcid.org/{{ socials.orcid_id }}" target="_blank" rel="noopener" aria-label="ORCID"><i class="ai ai-orcid"></i></a>{% endif %}
-              {% if socials.github_username %}<a href="https://github.com/{{ socials.github_username }}" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>{% endif %}
-              {% if socials.linkedin_username %}<a href="https://www.linkedin.com/in/{{ socials.linkedin_username }}" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>{% endif %}
-            </div>
-          </aside>
+        {% if honors %}
+        <h3 class="col-title col-title--spaced">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.5 12.9 17 22l-5-3-5 3 1.5-9.1"/></svg>
+          Honors &amp; Service
+        </h3>
+        <ul class="honors">
+          {% for h in honors.contents %}
+            <li data-reveal><span class="honor-year">{{ h.year }}</span><span>{{ h.title }}</span></li>
+          {% endfor %}
+          {% if service %}
+            <li data-reveal><span class="honor-year">Reviewer</span><span>{{ service.contents | join: '; ' }}</span></li>
+          {% endif %}
+        </ul>
+        {% endif %}
+      </div>
 
-          <div class="about-copy" data-reveal data-dir="right">
-            <span class="kicker">About</span>
-            <h2 class="section-title">Modeling heat, at the speed of design.</h2>
-            <div class="prose">{{ content }}</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============ BACKGROUND ============ -->
-      <section class="section section-alt" id="background">
-        <div class="container">
-          <header class="section-head" data-reveal>
-            <span class="kicker">Background</span>
-            <h2 class="section-title">Education &amp; Experience</h2>
-          </header>
-
-          <div class="bg-grid">
-            <div>
-              <h3 class="col-title">
-                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M21.4 10.9a1 1 0 0 0 0-1.8l-8.6-3.9a2 2 0 0 0-1.7 0L2.6 9.1a1 1 0 0 0 0 1.8l8.6 3.9a2 2 0 0 0 1.7 0Z"/><path d="M22 10v6M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
-                Education
-              </h3>
-              <ol class="timeline">
-                {% for e in edu.contents %}
-                  <li class="tl-item" data-reveal data-dir="left">
-                    <span class="tl-dot" aria-hidden="true"></span>
-                    <div class="tl-card">
-                      <span class="tl-years">{{ e.year }}</span>
-                      <h4>{{ e.title }}</h4>
-                      <p class="tl-org">{{ e.institution }}</p>
-                      {% if e.description %}<ul class="tl-points">{% for d in e.description %}<li>{{ d | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}</ul>{% endif %}
-                    </div>
-                  </li>
-                {% endfor %}
-              </ol>
-
-              {% if honors %}
-              <h3 class="col-title col-title--spaced">
-                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.5 12.9 17 22l-5-3-5 3 1.5-9.1"/></svg>
-                Honors &amp; Service
-              </h3>
-              <ul class="honors" data-stagger>
-                {% for h in honors.contents %}
-                  <li data-reveal><span class="honor-year">{{ h.year }}</span><span>{{ h.title }}</span></li>
-                {% endfor %}
-                {% if service %}
-                  <li data-reveal><span class="honor-year">Reviewer</span><span>{{ service.contents | join: '; ' }}</span></li>
-                {% endif %}
-              </ul>
-              {% endif %}
-            </div>
-
-            <div>
-              <h3 class="col-title">
-                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect x="2" y="6" width="20" height="14" rx="2"/></svg>
-                Experience
-              </h3>
-              <ol class="timeline">
-                {% assign exp_groups = '' | split: '' %}
-                {% if research_exp %}{% assign exp_groups = exp_groups | push: research_exp %}{% endif %}
-                {% if teaching %}{% assign exp_groups = exp_groups | push: teaching %}{% endif %}
-                {% if prior %}{% assign exp_groups = exp_groups | push: prior %}{% endif %}
-                {% for g in exp_groups %}
-                  {% if g.title == 'Research Experience' %}{% assign tag = 'Research' %}{% elsif g.title == 'Teaching Experience' %}{% assign tag = 'Teaching' %}{% else %}{% assign tag = 'Industry & Early Research' %}{% endif %}
-                  {% for e in g.contents %}
-                    <li class="tl-item" data-reveal data-dir="right">
-                      <span class="tl-dot" aria-hidden="true"></span>
-                      <div class="tl-card">
-                        <div class="tl-top"><span class="tl-years">{{ e.year }}</span><span class="tag">{{ tag }}</span></div>
-                        <h4>{{ e.title }}</h4>
-                        <p class="tl-org">{{ e.institution }}</p>
-                        {% if e.description %}<ul class="tl-points">{% for d in e.description %}<li>{{ d | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}</ul>{% endif %}
-                      </div>
-                    </li>
-                  {% endfor %}
-                {% endfor %}
-              </ol>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============ RESEARCH ============ -->
-      <section class="section" id="research">
-        <div class="container">
-          <header class="section-head section-head--center" data-reveal>
-            <span class="kicker">Research Portfolio</span>
-            <h2 class="section-title">Research Projects</h2>
-          </header>
-
-          <div class="filters" role="group" aria-label="Filter research projects" data-filters data-reveal>
-            <span class="filter-pill" aria-hidden="true" data-pill></span>
-            <button type="button" class="filter is-active" data-filter="all" aria-pressed="true">All</button>
-            {% for c in page.research_categories %}
-              <button type="button" class="filter" data-filter="{{ c.key | slugify }}" aria-pressed="false">{{ c.label }}</button>
-            {% endfor %}
-          </div>
-
-          <div class="proj-grid" data-filter-grid>
-            {% assign projects = site.projects | sort: 'importance' %}
-            {% for c in page.research_categories %}
-              {% assign cat_projects = projects | where: 'category', c.key %}
-              {% for p in cat_projects %}
-                {% include pub_image.liquid key=p.paper %}
-                <a class="proj-card" href="{{ p.url | relative_url }}" data-cat="{{ p.category | slugify }}" data-reveal>
-                  <div class="proj-media{% if pub_img == nil %} proj-media--empty{% endif %}">
-                    {% if pub_img %}
-                      <img src="{{ pub_img }}" alt="{{ p.title }} overview figure" loading="lazy" decoding="async">
-                    {% else %}
-                      <span class="proj-media-label" aria-hidden="true">{{ p.title }}</span>
-                    {% endif %}
-                  </div>
-                  <div class="proj-body">
-                    <div class="proj-top">
-                      <span class="proj-venue">{{ p.venue }}</span>
-                      <svg class="proj-arrow" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 7h10v10M7 17 17 7"/></svg>
-                    </div>
-                    <h3 class="proj-title">{{ p.title }}</h3>
-                    <p class="proj-desc">{{ p.description }}</p>
-                    {% if p.result %}<p class="proj-result"><strong>Key result:</strong> {{ p.result }}</p>{% endif %}
-                    {% if p.tools %}
-                      <div class="proj-tools">
-                        {% for t in p.tools limit: 3 %}<span class="tool">{{ t }}</span>{% endfor %}
-                        {% assign more = p.tools.size | minus: 3 %}{% if more > 0 %}<span class="tool tool--more">+{{ more }}</span>{% endif %}
-                      </div>
-                    {% endif %}
-                  </div>
-                </a>
-              {% endfor %}
-            {% endfor %}
-          </div>
-        </div>
-      </section>
-
-      <!-- ============ SKILLS ============ -->
-      <section class="section section-alt" id="skills">
-        <div class="container">
-          <header class="section-head section-head--center" data-reveal>
-            <span class="kicker">Toolkit</span>
-            <h2 class="section-title">Skills</h2>
-          </header>
-          <div class="skills-grid" data-stagger>
-            {% for group in page.skills %}
-              <div class="skill-card" data-reveal>
-                <h3>{{ group[0] }}</h3>
-                <div class="skill-chips">{% for s in group[1] %}<span>{{ s }}</span>{% endfor %}</div>
-              </div>
-            {% endfor %}
-          </div>
-        </div>
-      </section>
-
-      <!-- ============ PUBLICATIONS ============ -->
-      <section class="section" id="publications">
-        <div class="container">
-          <header class="section-head section-head--split" data-reveal>
-            <div>
-              <span class="kicker">Publications</span>
-              <h2 class="section-title">Papers &amp; Preprints</h2>
-            </div>
-            <a class="text-link" href="{{ '/publications/' | relative_url }}">
-              Full list with BibTeX
-              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M7 7h10v10M7 17 17 7"/></svg>
-            </a>
-          </header>
-          <div class="pubs">
-            {% bibliography --group_by none --template bib_card %}
-          </div>
-        </div>
-      </section>
-
-      <!-- ============ NEWS ============ -->
-      <section class="section section-alt" id="news">
-        <div class="container">
-          <header class="section-head section-head--split" data-reveal>
-            <div>
-              <span class="kicker">Updates</span>
-              <h2 class="section-title">News</h2>
-            </div>
-            <a class="text-link" href="{{ '/news/' | relative_url }}">
-              All news
-              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M7 7h10v10M7 17 17 7"/></svg>
-            </a>
-          </header>
-          {% assign news = site.news | reverse %}
-          <ol class="news-list" data-stagger>
-            {% for item in news limit: page.news_limit %}
-              <li data-reveal>
-                <time datetime="{{ item.date | date_to_xmlschema }}">{{ item.date | date: '%b %Y' }}</time>
-                <div class="news-text">
-                  {% if item.inline %}{{ item.content | remove: '<p>' | remove: '</p>' | emojify }}{% else %}<a href="{{ item.url | relative_url }}">{{ item.title }}</a>{% endif %}
+      <div>
+        <h3 class="col-title">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect x="2" y="6" width="20" height="14" rx="2"/></svg>
+          Experience
+        </h3>
+        <ol class="timeline">
+          {% assign exp_groups = '' | split: '' %}
+          {% if research_exp %}{% assign exp_groups = exp_groups | push: research_exp %}{% endif %}
+          {% if teaching %}{% assign exp_groups = exp_groups | push: teaching %}{% endif %}
+          {% if prior %}{% assign exp_groups = exp_groups | push: prior %}{% endif %}
+          {% for g in exp_groups %}
+            {% if g.title == 'Research Experience' %}{% assign tag = 'Research' %}{% elsif g.title == 'Teaching Experience' %}{% assign tag = 'Teaching' %}{% else %}{% assign tag = 'Industry & Early Research' %}{% endif %}
+            {% for e in g.contents %}
+              <li class="tl-item" data-reveal data-dir="right">
+                <span class="tl-dot" aria-hidden="true"></span>
+                <div class="tl-card">
+                  <div class="tl-top"><span class="tl-years">{{ e.year }}</span><span class="tag">{{ tag }}</span></div>
+                  <h4>{{ e.title }}</h4>
+                  <p class="tl-org">{{ e.institution }}</p>
+                  {% if e.description %}<ul class="tl-points">{% for d in e.description %}<li>{{ d | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}</ul>{% endif %}
                 </div>
               </li>
             {% endfor %}
-          </ol>
-        </div>
-      </section>
-
-      <!-- ============ CONTACT ============ -->
-      <section class="section contact" id="contact">
-        <div class="container contact-inner">
-          <div data-reveal>
-            <span class="kicker">Contact</span>
-            <h2 class="section-title">Let's talk thermal, packaging and AI for hardware.</h2>
-            <p class="contact-lede">I graduate in Spring 2027 and am open to full-time roles in thermal modeling, advanced packaging and AI-driven hardware design.</p>
-          </div>
-          <div class="contact-actions" data-reveal data-delay=".15">
-            {% if socials.email %}
-              <a class="btn btn-primary btn-lg" href="mailto:{{ socials.email }}">
-                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-9 5.7a2 2 0 0 1-2 0L2 7"/></svg>
-                {{ socials.email }}
-              </a>
-            {% endif %}
-            <div class="contact-socials">
-              {% if socials.linkedin_username %}<a class="btn btn-ghost" href="https://www.linkedin.com/in/{{ socials.linkedin_username }}" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>{% endif %}
-              {% if socials.github_username %}<a class="btn btn-ghost" href="https://github.com/{{ socials.github_username }}" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>{% endif %}
-              {% if socials.scholar_userid %}<a class="btn btn-ghost" href="https://scholar.google.com/citations?user={{ socials.scholar_userid }}" target="_blank" rel="noopener"><i class="ai ai-google-scholar"></i> Scholar</a>{% endif %}
-              {% if socials.orcid_id %}<a class="btn btn-ghost" href="https://orcid.org/{{ socials.orcid_id }}" target="_blank" rel="noopener"><i class="ai ai-orcid"></i> ORCID</a>{% endif %}
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container footer-inner">
-        <span>&copy; {{ 'now' | date: '%Y' }} {{ full_name }}</span>
-        <span class="footer-links">
-          <a href="{{ '/research/' | relative_url }}">Research</a>
-          <a href="{{ '/publications/' | relative_url }}">Publications</a>
-          <a href="{{ '/cv/' | relative_url }}">CV</a>
-          <a href="{{ '/repositories/' | relative_url }}">Code</a>
-        </span>
+          {% endfor %}
+        </ol>
       </div>
-    </footer>
+    </div>
+  </div>
+</section>
 
-    <script src="{{ '/assets/js/home.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
-  </body>
-</html>
+<!-- ============ RESEARCH ============ -->
+{%- capture authmap -%}{% bibliography --group_by none --template bib_short %}{%- endcapture -%}
+{%- assign auth_parts = authmap | split: '@@' -%}
+<section class="section section-alt" id="research">
+  <div class="container">
+    <header class="section-head section-head--center" data-reveal>
+      <span class="kicker">Research Portfolio</span>
+      <h2 class="section-title">Research Projects</h2>
+    </header>
+
+    <div class="filters" role="group" aria-label="Filter research projects" data-filters data-reveal>
+      <span class="filter-pill" aria-hidden="true" data-pill></span>
+      <button type="button" class="filter{% if prof.research_default == 'all' %} is-active{% endif %}" data-filter="all" aria-pressed="{% if prof.research_default == 'all' %}true{% else %}false{% endif %}">All</button>
+      {% for ck in prof.research_order %}
+        {% assign c = data.categories[ck] %}
+        <button type="button" class="filter{% if prof.research_default == ck %} is-active{% endif %}" data-filter="{{ c.key | slugify }}" aria-pressed="{% if prof.research_default == ck %}true{% else %}false{% endif %}">{{ c.label }}</button>
+      {% endfor %}
+    </div>
+
+    <div class="proj-grid" data-filter-grid>
+      {% assign projects = site.projects | sort: 'importance' %}
+      {% for ck in prof.research_order %}
+        {% assign c = data.categories[ck] %}
+        {% assign cat_projects = projects | where: 'category', c.key %}
+        {% for p in cat_projects %}
+          {% include pub_image.liquid key=p.paper %}
+          {% assign auth_html = '' %}
+          {% if p.paper %}
+            {% assign needle = p.paper | append: '##' %}
+            {% for part in auth_parts %}{% if part contains needle %}{% assign auth_html = part | split: needle | last | strip %}{% break %}{% endif %}{% endfor %}
+          {% endif %}
+          {% assign hide = false %}
+          {% if prof.research_default != 'all' and prof.research_default != ck %}{% assign hide = true %}{% endif %}
+          <a class="proj-card{% if hide %} is-hidden{% endif %}" href="{{ p.url | relative_url }}" data-cat="{{ p.category | slugify }}" data-reveal>
+            <div class="proj-media{% if pub_img == nil %} proj-media--empty{% endif %}">
+              {% if pub_img %}
+                <img src="{{ pub_img }}" alt="{{ p.title }} overview figure" loading="lazy" decoding="async">
+              {% else %}
+                <span class="proj-media-label" aria-hidden="true">{{ p.title }}</span>
+              {% endif %}
+            </div>
+            <div class="proj-body">
+              <div class="proj-top">
+                <span class="proj-venue">{{ p.venue }}</span>
+                <svg class="proj-arrow" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 7h10v10M7 17 17 7"/></svg>
+              </div>
+              <h3 class="proj-title">{{ p.title }}</h3>
+              {% if auth_html != '' %}<p class="proj-authors">{{ auth_html }}</p>{% endif %}
+              <p class="proj-desc">{{ p.description }}</p>
+              {% if p.result %}<p class="proj-result"><strong>Key result:</strong> {{ p.result }}</p>{% endif %}
+              {% if p.tools %}
+                <div class="proj-tools">
+                  {% for t in p.tools limit: 3 %}<span class="tool">{{ t }}</span>{% endfor %}
+                  {% assign more = p.tools.size | minus: 3 %}{% if more > 0 %}<span class="tool tool--more">+{{ more }}</span>{% endif %}
+                </div>
+              {% endif %}
+            </div>
+          </a>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEWS (full timeline) ============ -->
+<section class="section" id="news">
+  <div class="container">
+    <header class="section-head" data-reveal>
+      <span class="kicker">Timeline</span>
+      <h2 class="section-title">News</h2>
+    </header>
+    {% assign news = site.news | sort: 'date' | reverse %}
+    <ol class="news-tl">
+      {% for item in news %}
+        <li class="news-item news-item--{{ item.kind | default: 'paper' }}" data-reveal data-dir="left">
+          <span class="news-dot" aria-hidden="true"></span>
+          <time datetime="{{ item.date | date_to_xmlschema }}">{% if item.date_label %}{{ item.date_label }}{% else %}{{ item.date | date: '%b %Y' }}{% endif %}</time>
+          <div class="news-card">
+            {% if item.kind == 'award' %}<span class="news-kind">Award</span>{% else %}<span class="news-kind">Paper</span>{% endif %}
+            <div class="news-text">{% if item.inline %}{{ item.content | remove: '<p>' | remove: '</p>' | emojify }}{% else %}<a href="{{ item.url | relative_url }}">{{ item.title }}</a>{% endif %}</div>
+          </div>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section section-alt contact" id="contact">
+  <div class="container contact-inner">
+    <div data-reveal>
+      <span class="kicker">Contact</span>
+      <h2 class="section-title">{{ prof.contact_title }}</h2>
+      <p class="contact-lede">{{ prof.contact_text }}</p>
+    </div>
+    <div class="contact-actions" data-reveal data-delay=".15">
+      {% if socials.email %}
+        <a class="btn btn-primary btn-lg" href="mailto:{{ socials.email }}">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-9 5.7a2 2 0 0 1-2 0L2 7"/></svg>
+          {{ socials.email }}
+        </a>
+      {% endif %}
+      <div class="contact-socials">
+        {% if socials.linkedin_username %}<a class="btn btn-ghost" href="https://www.linkedin.com/in/{{ socials.linkedin_username }}" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>{% endif %}
+        {% if socials.scholar_userid %}<a class="btn btn-ghost" href="https://scholar.google.com/citations?user={{ socials.scholar_userid }}" target="_blank" rel="noopener"><i class="ai ai-google-scholar"></i> Scholar</a>{% endif %}
+        {% if socials.github_username %}<a class="btn btn-ghost" href="https://github.com/{{ socials.github_username }}" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>{% endif %}
+        <a class="btn btn-ghost" href="{{ cv_pdf }}" target="_blank" rel="noopener"><i class="fa-solid fa-file-lines"></i> CV</a>
+      </div>
+    </div>
+  </div>
+</section>

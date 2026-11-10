@@ -1,0 +1,30 @@
+---
+---
+{%- comment -%}
+  Short author line for project cards, emitted as "@@<key>##<html>@@" so home.liquid can look it up.
+  First author is me  -> "Chandra et al."
+  Otherwise           -> "<First author>, Chandra et al."  (my name in bold)
+{%- endcomment -%}
+{%- assign authors = entry.author_array -%}
+{%- assign n = authors | size -%}
+{%- assign self_idx = -1 -%}
+{%- for author in authors -%}
+  {%- assign ln = author.last | regex_replace: '[*∗†‡§¶‖&^]', '' -%}
+  {%- if site.scholar.last_name contains ln and site.scholar.first_name contains author.first -%}
+    {%- assign self_idx = forloop.index0 -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- capture out -%}
+  {%- if self_idx == 0 -%}
+    {%- assign me = authors[0].last | regex_replace: '([*∗†‡§¶‖&^]+)', '<sup>\1</sup>' -%}
+    <strong>{{ me }}</strong>{% if n > 1 %} et al.{% endif %}
+  {%- elsif self_idx > 0 -%}
+    {%- assign first = authors[0].last | regex_replace: '([*∗†‡§¶‖&^]+)', '<sup>\1</sup>' -%}
+    {%- assign me = authors[self_idx].last | regex_replace: '([*∗†‡§¶‖&^]+)', '<sup>\1</sup>' -%}
+    {{ first }}, <strong>{{ me }}</strong>{% if n > 2 %} et al.{% endif %}
+  {%- else -%}
+    {{ authors[0].last }}{% if n > 1 %} et al.{% endif %}
+  {%- endif -%}
+{%- endcapture -%}
+@@{{ entry.key }}##{{ out | strip }}@@

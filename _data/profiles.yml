@@ -1,0 +1,112 @@
+# Content for the three home-page profiles (Both / Thermal / Video).
+# Pages: _pages/about.md (both, "/"), _pages/thermal.md ("/thermal/"), _pages/video.md ("/video/").
+
+affiliations:
+  - Purdue University
+  - Nanoelectronics Research Lab (NRL)
+  - Advisor · Prof. Kaushik Roy
+  - Jadavpur University
+
+skills:
+  Thermal Modeling: [COMSOL Multiphysics, Cadence Celsius, FEM, Heat Transfer, 3DHI Thermal Modeling]
+  Video & Vision: [Optimal Transport, Gromov–Wasserstein, Procedure Learning, Temporal Alignment, Self-Supervised Learning, Surgical Video Analysis]
+  Machine Learning: [PyTorch, TensorFlow, Neural Operators, Physics-Informed ML, Deep Learning]
+  EDA & Hardware: [Cadence Virtuoso, HSPICE, Verilog, Synopsys Power Analysis, VLSI Design]
+  Programming: [Python, MATLAB, C, C++, Bash, Git, Linux, Numerical Modeling]
+
+categories:
+  thermal:
+    key: thermal modeling & AI for hardware
+    label: Thermal Modeling & AI for Hardware
+  video:
+    key: video & scene understanding
+    label: Video & Scene Understanding
+
+both:
+  label: Both
+  path: /
+  eyebrow: Ph.D. Candidate · Purdue ECE · Graduating Spring 2027
+  headline: Physics-aware AI for <span class="hl">chips</span> and <span class="hl">video</span>.
+  lede: >-
+    I build models of signals that evolve over space and time: heat spreading through 3D-integrated chips,
+    and actions unfolding across video. Working on both lets me carry ideas between physical simulation
+    and visual understanding.
+  about_title: Two research threads, one core skill.
+  research_order: [thermal, video]
+  research_default: all
+  skills_order: [Thermal Modeling, Video & Vision, Machine Learning, EDA & Hardware, Programming]
+  contact_title: Let's talk heat, video and the AI that models both.
+  contact_text: >-
+    I graduate in Spring 2027 and am open to full-time roles in thermal modeling, advanced packaging and
+    AI for hardware, in video and scene understanding, and in teams that need both.
+  bio: |
+    I am a Ph.D. candidate in Electrical and Computer Engineering at Purdue University, advised by <a href="https://engineering.purdue.edu/NRL/Group">Prof. Kaushik Roy</a> in the Nanoelectronics Research Laboratory. I received my B.E. (Hons.) in Electronics and Telecommunication Engineering from Jadavpur University, India.
+
+    My research has two threads that share one core skill: **learning how structured signals evolve over space and time**.
+
+    - **Thermal modeling & AI for hardware.** I build COMSOL finite-element workflows and physics-informed surrogate models for 3D heterogeneous integration (3DHI) and advanced packaging. **Therm3D** predicts transient 3D temperature fields at 1.09 °C RMSE, ~10,000–20,000× faster than FEM, and **2D-ThermAl** (IEEE TCAD) reaches 0.71 °C RMSE at ~200× the speed of COMSOL.
+    - **Video & scene understanding.** I develop optimal-transport methods that align and segment unaligned video: **OPEL** (NeurIPS 2024) and **REMAP** for procedure learning, **ViPeR** (IEEE Access) for surgical phase recognition, and **Loss Knows Best** for finding annotation errors in video datasets.
+
+    The two threads reinforce each other. A transient temperature map and a video are both fields that change over time, so methods move between them: neural operators and autoregressive rollout on one side, temporal alignment and representation learning on the other. I can take a problem from first-principles simulation and data generation through to a trained, deployable model.
+
+    I am a finalist for the 2026 Qualcomm Innovation Fellowship and an ICML 2026 Golden Reviewer. **I graduate in Spring 2027.**
+
+thermal:
+  label: Thermal
+  path: /thermal/
+  eyebrow: Ph.D. Candidate · Thermal Modeling & AI for Hardware
+  headline: Fast, physics-aware <span class="hl">thermal modeling</span> for next-generation chips.
+  lede: >-
+    I build COMSOL finite-element workflows and physics-informed surrogate models that predict chip
+    temperatures orders of magnitude faster than FEM, for 3D heterogeneous integration, advanced packaging
+    and AI for hardware.
+  about_title: Modeling heat, at the speed of design.
+  research_order: [thermal, video]
+  research_default: thermal
+  skills_order: [Thermal Modeling, Machine Learning, EDA & Hardware, Programming, Video & Vision]
+  contact_title: Let's talk thermal, packaging and AI for hardware.
+  contact_text: >-
+    I graduate in Spring 2027 and am open to full-time roles in thermal modeling, advanced packaging and
+    AI-driven hardware design.
+  bio: |
+    I am a Ph.D. candidate in Electrical and Computer Engineering at Purdue University, advised by <a href="https://engineering.purdue.edu/NRL/Group">Prof. Kaushik Roy</a> in the Nanoelectronics Research Laboratory. I received my B.E. (Hons.) in Electronics and Telecommunication Engineering from Jadavpur University, India.
+
+    My research focuses on **semiconductor thermal modeling, 3D heterogeneous integration (3DHI), advanced packaging, and AI for hardware**. I build high-fidelity **COMSOL finite-element simulation** workflows and **physics-informed surrogate models** (neural operators and generative networks) that predict steady-state and transient chip temperatures orders of magnitude faster than FEM, enabling rapid evaluation of chip, power-map and package configurations early in the design cycle.
+
+    - **Therm3D**: a physics-aware neural operator for transient thermal modeling of 3DHI systems, with energy-conservation and boundary-condition constraints. 1.09 °C RMSE, ~10,000–20,000× faster than FEM.
+    - **2D-ThermAl** (IEEE TCAD): a physics-informed generative framework for circuit-level thermal analysis, trained on 200+ COMSOL-simulated circuits. 0.71 °C RMSE, ~200× faster than COMSOL.
+
+    My background spans **VLSI design, circuit power and thermal analysis, and physics-informed machine learning**. My video-understanding work (OPEL at NeurIPS 2024, REMAP, ViPeR) adds depth in temporal modeling and representation learning that carries straight over to transient thermal prediction.
+
+    I am a finalist for the 2026 Qualcomm Innovation Fellowship and an ICML 2026 Golden Reviewer. **I graduate in Spring 2027.**
+
+video:
+  label: Video
+  path: /video/
+  eyebrow: Ph.D. Candidate · Video & Scene Understanding
+  headline: Learning structure from <span class="hl">unaligned video</span>.
+  lede: >-
+    I develop optimal-transport and representation-learning methods that align, segment and audit video,
+    from procedure learning (NeurIPS 2024) to surgical phase recognition.
+  about_title: Finding the steps hidden in video.
+  research_order: [video, thermal]
+  research_default: video
+  skills_order: [Video & Vision, Machine Learning, Programming, Thermal Modeling, EDA & Hardware]
+  contact_title: Let's talk video, procedures and scene understanding.
+  contact_text: >-
+    I graduate in Spring 2027 and am open to full-time roles in video understanding, scene understanding
+    and computer vision.
+  bio: |
+    I am a Ph.D. candidate in Electrical and Computer Engineering at Purdue University, advised by <a href="https://engineering.purdue.edu/NRL/Group">Prof. Kaushik Roy</a> in the Nanoelectronics Research Laboratory. I received my B.E. (Hons.) in Electronics and Telecommunication Engineering from Jadavpur University, India.
+
+    My video research focuses on **learning structure from unaligned and weakly labeled video**. I develop **optimal-transport** methods that discover how steps line up across demonstrations, even when steps are missing, reordered or filmed from different viewpoints.
+
+    - **OPEL** (NeurIPS 2024): optimal-transport-guided procedure learning across first- and third-person video.
+    - **REMAP**: regularized partial Gromov–Wasserstein optimal transport for weakly supervised procedure learning, robust to missing, reordered or unmatched steps.
+    - **ViPeR** (IEEE Access 2025): surgical phase recognition that captures temporal structure and action-level information from video.
+    - **Loss Knows Best**: detecting mislabeled frames in video datasets from model-loss trajectories.
+    - **Image Grammar** (IEEE Access 2024): structured reasoning over the compositional and syntactic relationships among objects in a scene.
+
+    Alongside this, I build physics-informed models for chip thermal analysis (**Therm3D**, and **2D-ThermAl** in IEEE TCAD). That work gives me hands-on experience with spatiotemporal modeling, large simulated datasets and models that must respect physical constraints.
+
+    I am a finalist for the 2026 Qualcomm Innovation Fellowship, an ICML 2026 Golden Reviewer, and a reviewer for NeurIPS, ICLR, ICML, WACV and MICCAI. **I graduate in Spring 2027.**

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'en' }}">
+  <head>
+    {% include metadata.liquid %}
+    <script>
+      (function () {
+        var s;
+        try { s = localStorage.getItem("theme"); } catch (e) {}
+        var dark = s === "dark" || (s !== "light" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+        document.documentElement.classList.add("js");
+      })();
+    </script>
+    {% if site.icon.size <= 4 %}
+      <link rel="shortcut icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>{{ site.icon }}</text></svg>">
+    {% endif %}
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="{{ '/assets/css/academicons.min.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  </head>
+  {%- capture full_name %}{{ site.first_name }} {{ site.last_name }}{% endcapture -%}
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    {% include site_nav.liquid %}
+
+    <main id="main">
+      {{ content }}
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span>&copy; {{ 'now' | date: '%Y' }} {{ full_name }}</span>
+        <span class="footer-links">
+          <a href="{{ '/publications/' | relative_url }}">Publications</a>
+          <a href="{{ '/cv/' | relative_url }}">CV</a>
+          <a href="{{ '/news/' | relative_url }}">News</a>
+          <a href="{{ '/repositories/' | relative_url }}">Code</a>
+        </span>
+      </div>
+    </footer>
+
+    <script src="{{ '/assets/js/home.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+  </body>
+</html>

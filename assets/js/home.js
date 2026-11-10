@@ -1,9 +1,8 @@
-// Home page interactions: scroll reveals, nav progress/active state, research filters,
-// abstract toggles, stat count-up, theme toggle, mobile menu.
+// Shell pages (home profiles + publications): scroll reveals, research filters,
+// publication tabs and abstract toggles. Nav behaviour lives in site-nav.js.
 (function () {
   "use strict";
 
-  var root = document.documentElement;
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
 
@@ -55,109 +54,39 @@
     revealEls.forEach(function (el) { io.observe(el); });
   }
 
-  /* ---------- Nav: progress bar + shadow ---------- */
-  var nav = document.querySelector("[data-nav]");
-  var bar = document.querySelector("[data-progress]");
-  var ticking = false;
-  function onScroll() {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(function () {
-      var max = root.scrollHeight - window.innerHeight;
-      var p = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
-      if (bar) bar.style.transform = "scaleX(" + p + ")";
-      if (nav) nav.classList.toggle("is-scrolled", window.scrollY > 8);
-      ticking = false;
-    });
+  /* ---------- Sliding pill helper ---------- */
+  function pillTo(pill, btn, instant) {
+    if (!pill || !btn) return;
+    if (instant) pill.style.transition = "none";
+    pill.style.width = btn.offsetWidth + "px";
+    pill.style.height = btn.offsetHeight + "px";
+    pill.style.transform = "translate(" + btn.offsetLeft + "px," + btn.offsetTop + "px)";
+    if (instant) {
+      pill.offsetWidth; // flush
+      pill.style.transition = "";
+    }
   }
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
-
-  /* ---------- Nav: active section ---------- */
-  var links = Array.prototype.slice.call(document.querySelectorAll("[data-nav-link]"));
-  if ("IntersectionObserver" in window && links.length) {
-    var byId = {};
-    links.forEach(function (a) { byId[a.getAttribute("href").slice(1)] = a; });
-    var spy = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (e) {
-          if (!e.isIntersecting) return;
-          links.forEach(function (a) { a.classList.remove("is-active"); });
-          var a = byId[e.target.id];
-          if (a) a.classList.add("is-active");
-        });
-      },
-      { rootMargin: "-45% 0px -50% 0px" }
-    );
-    document.querySelectorAll("main section[id]").forEach(function (s) { spy.observe(s); });
+  function keepPill(bar) {
+    var pill = bar.querySelector("[data-pill]");
+    var place = function () { pillTo(pill, bar.querySelector(".filter.is-active"), true); };
+    place();
+    window.addEventListener("resize", place);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(place);
+    return pill;
+  }
+  function animate(el, frames, opts) {
+    if (reduceMotion || !el.animate) return Promise.resolve();
+    return el.animate(frames, opts).finished.catch(function () {});
   }
 
-  var top = document.querySelector("[data-scroll-top]");
-  if (top) {
-    top.addEventListener("click", function (e) {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
-    });
-  }
-
-  /* ---------- Mobile menu ---------- */
-  var menuBtn = document.querySelector("[data-menu-toggle]");
-  var menu = document.querySelector("[data-menu]");
-  function setMenu(open) {
-    if (!menu || !menuBtn) return;
-    menu.classList.toggle("is-open", open);
-    menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
-    menuBtn.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
-  }
-  if (menuBtn && menu) {
-    menuBtn.addEventListener("click", function () {
-      setMenu(!menu.classList.contains("is-open"));
-    });
-    menu.addEventListener("click", function (e) {
-      if (e.target.closest("a")) setMenu(false);
-    });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") setMenu(false);
-    });
-    document.addEventListener("click", function (e) {
-      if (!e.target.closest("[data-nav]")) setMenu(false);
-    });
-  }
-
-  /* ---------- Theme toggle (shares al-folio's localStorage key) ---------- */
-  var themeBtn = document.querySelector("[data-theme-toggle]");
-  if (themeBtn) {
-    themeBtn.addEventListener("click", function () {
-      var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      root.setAttribute("data-theme", next);
-      try { localStorage.setItem("theme", next); } catch (e) {}
-    });
-  }
-
-  /* ---------- Research filters with sliding pill ---------- */
+  /* ---------- Research filters ---------- */
   var filterBar = document.querySelector("[data-filters]");
   var grid = document.querySelector("[data-filter-grid]");
   if (filterBar && grid) {
-    var pill = filterBar.querySelector("[data-pill]");
+    var fPill = keepPill(filterBar);
     var buttons = Array.prototype.slice.call(filterBar.querySelectorAll("[data-filter]"));
     var cards = Array.prototype.slice.call(grid.querySelectorAll("[data-cat]"));
     var busy = false;
-
-    var movePill = function (btn) {
-      if (!pill || !btn) return;
-      pill.style.width = btn.offsetWidth + "px";
-      pill.style.height = btn.offsetHeight + "px";
-      pill.style.transform = "translate(" + btn.offsetLeft + "px," + btn.offsetTop + "px)";
-    };
-    var active = function () { return filterBar.querySelector(".filter.is-active"); };
-    movePill(active());
-    window.addEventListener("resize", function () { movePill(active()); });
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { movePill(active()); });
-
-    var animate = function (el, frames, opts) {
-      if (reduceMotion || !el.animate) return Promise.resolve();
-      return el.animate(frames, opts).finished.catch(function () {});
-    };
 
     buttons.forEach(function (btn) {
       btn.addEventListener("click", function () {
@@ -167,7 +96,7 @@
           b.classList.toggle("is-active", b === btn);
           b.setAttribute("aria-pressed", b === btn ? "true" : "false");
         });
-        movePill(btn);
+        pillTo(fPill, btn);
 
         var f = btn.getAttribute("data-filter");
         var match = function (c) { return f === "all" || c.getAttribute("data-cat") === f; };
@@ -180,15 +109,68 @@
           })
         ).then(function () {
           cards.forEach(function (c) {
-            c.getAnimations && c.getAnimations().forEach(function (a) { a.cancel(); });
+            if (c.getAnimations) c.getAnimations().forEach(function (a) { a.cancel(); });
             c.classList.toggle("is-hidden", !match(c));
           });
-          var shown = cards.filter(match);
-          shown.forEach(function (c, i) {
+          cards.filter(match).forEach(function (c, i) {
             animate(c, [{ opacity: 0, transform: "translateY(18px) scale(0.98)" }, { opacity: 1, transform: "none" }], { duration: 560, delay: i * 70, easing: EASE, fill: "backwards" });
           });
           busy = false;
         });
+      });
+    });
+  }
+
+  /* ---------- Publication tabs ---------- */
+  var tabBar = document.querySelector("[data-tabs]");
+  if (tabBar) {
+    var tabs = Array.prototype.slice.call(tabBar.querySelectorAll("[data-tab]"));
+    var panels = Array.prototype.slice.call(document.querySelectorAll("[data-panel]"));
+    var tPill = tabBar.querySelector("[data-pill]");
+
+    var select = function (key, opts) {
+      opts = opts || {};
+      var btn = tabs.filter(function (t) { return t.getAttribute("data-tab") === key; })[0];
+      if (!btn) return;
+      tabs.forEach(function (t) {
+        var on = t === btn;
+        t.classList.toggle("is-active", on);
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        t.tabIndex = on ? 0 : -1;
+      });
+      pillTo(tPill, btn, opts.instant);
+      panels.forEach(function (p) {
+        var on = p.getAttribute("data-panel") === key;
+        p.hidden = !on;
+        p.classList.toggle("is-current", on);
+        if (on && !opts.instant && !reduceMotion) {
+          p.classList.remove("is-entering");
+          p.offsetWidth; // restart animation
+          p.classList.add("is-entering");
+        }
+      });
+      if (opts.updateHash && history.replaceState) history.replaceState(null, "", "#" + key);
+    };
+
+    var initial = (location.hash || "").slice(1);
+    if (!tabs.some(function (t) { return t.getAttribute("data-tab") === initial; })) {
+      var prof = null;
+      try { prof = localStorage.getItem("profile"); } catch (e) {}
+      initial = prof === "video" ? "video" : "thermal";
+    }
+    select(initial, { instant: true });
+    keepPill(tabBar);
+
+    tabs.forEach(function (t, i) {
+      t.addEventListener("click", function () {
+        if (!t.classList.contains("is-active")) select(t.getAttribute("data-tab"), { updateHash: true });
+      });
+      t.addEventListener("keydown", function (e) {
+        var d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+        if (!d) return;
+        var n = tabs[(i + d + tabs.length) % tabs.length];
+        n.focus();
+        select(n.getAttribute("data-tab"), { updateHash: true });
       });
     });
   }
@@ -204,50 +186,4 @@
     box.classList.toggle("is-open", open);
     t.setAttribute("aria-expanded", open ? "true" : "false");
   });
-
-  /* ---------- Stat count-up ---------- */
-  var counters = Array.prototype.slice.call(document.querySelectorAll("[data-count]"));
-  if (!reduceMotion && "IntersectionObserver" in window && counters.length) {
-    var countIO = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (e) {
-          if (!e.isIntersecting) return;
-          countIO.unobserve(e.target);
-          countUp(e.target);
-        });
-      },
-      { threshold: 0.6 }
-    );
-    counters.forEach(function (el) { countIO.observe(el); });
-  }
-
-  function countUp(el) {
-    var text = el.textContent.trim();
-    var m = text.match(/^([^\d]*)([\d,]*\.?\d+)(.*)$/);
-    if (!m) return;
-    var prefix = m[1], numStr = m[2], suffix = m[3];
-    var target = parseFloat(numStr.replace(/,/g, ""));
-    var decimals = (numStr.split(".")[1] || "").length;
-    var useCommas = numStr.indexOf(",") !== -1;
-    var dur = 1400, start = null;
-    var fmt = function (v) {
-      var s = v.toFixed(decimals);
-      if (useCommas) {
-        var parts = s.split(".");
-        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        s = parts.join(".");
-      }
-      return prefix + s + suffix;
-    };
-    var step = function (ts) {
-      if (start === null) start = ts;
-      var t = Math.min((ts - start) / dur, 1);
-      var eased = t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-      el.textContent = fmt(target * eased);
-      if (t < 1) requestAnimationFrame(step);
-      else el.textContent = text;
-    };
-    el.textContent = fmt(0);
-    requestAnimationFrame(step);
-  }
 })();

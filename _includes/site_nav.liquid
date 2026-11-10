@@ -1,0 +1,55 @@
+{%- comment -%}
+  Shared top navigation for every page (home profiles, publications, and al-folio pages).
+  On a home profile page, section links point within the page. Elsewhere they point to "/",
+  and site-nav.js rewrites them to the visitor's last-used profile.
+{%- endcomment -%}
+{%- assign profiles = site.data.profiles -%}
+{%- if page.layout == 'home' -%}
+  {%- assign nav_base = page.url | relative_url -%}
+  {%- assign cur_profile = page.profile -%}
+{%- else -%}
+  {%- assign nav_base = '/' | relative_url -%}
+  {%- assign cur_profile = '' -%}
+{%- endif -%}
+{%- assign profile_keys = 'both,thermal,video' | split: ',' -%}
+{%- assign pubs_url = '/publications/' | relative_url -%}
+{%- assign cv_url = '/cv/' | relative_url -%}
+<header class="sn" data-nav{% if cur_profile != '' %} data-profile-current="{{ cur_profile }}"{% endif %}>
+  <div class="sn-inner">
+    <div class="sn-switch" role="group" aria-label="Research profile" data-profile-switch>
+      <span class="sn-switch-pill" aria-hidden="true" data-switch-pill></span>
+      {%- for key in profile_keys -%}
+        <a href="{{ profiles[key].path | relative_url }}" data-profile="{{ key }}"{% if key == cur_profile %} class="is-active" aria-current="page"{% endif %}>{{ profiles[key].label }}</a>
+      {%- endfor -%}
+    </div>
+    <nav class="sn-links" aria-label="Main">
+      <a href="{{ nav_base }}#about" data-nav-link data-base-link>About</a>
+      <a href="{{ nav_base }}#background" data-nav-link data-base-link>Background</a>
+      <a href="{{ nav_base }}#research" data-nav-link data-base-link>Research</a>
+      <a href="{{ nav_base }}#news" data-nav-link data-base-link>News</a>
+      <a href="{{ nav_base }}#contact" data-nav-link data-base-link>Contact</a>
+      <a href="{{ pubs_url }}"{% if page.url == '/publications/' %} class="is-active" aria-current="page"{% endif %}>Publications</a>
+    </nav>
+    <div class="sn-actions">
+      <button class="sn-icon" id="light-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="sn-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="sn-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </button>
+      <a class="sn-cta" href="{{ cv_url }}"{% if page.url == '/cv/' %} aria-current="page"{% endif %}>CV</a>
+      <button class="sn-icon sn-burger" type="button" data-menu-toggle aria-label="Open navigation menu" aria-expanded="false" aria-controls="sn-mobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="sn-progress" data-progress aria-hidden="true"></div>
+  <nav class="sn-mobile" id="sn-mobile" data-menu aria-label="Main">
+    <a href="{{ nav_base }}#about" data-base-link>About</a>
+    <a href="{{ nav_base }}#background" data-base-link>Background</a>
+    <a href="{{ nav_base }}#research" data-base-link>Research</a>
+    <a href="{{ nav_base }}#news" data-base-link>News</a>
+    <a href="{{ nav_base }}#contact" data-base-link>Contact</a>
+    <a href="{{ pubs_url }}">Publications</a>
+    <a href="{{ cv_url }}">CV</a>
+  </nav>
+</header>
+<script src="{{ '/assets/js/site-nav.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>

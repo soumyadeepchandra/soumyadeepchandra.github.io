@@ -1,0 +1,54 @@
+/* Shared design tokens for the redesigned pages (home, publications) and the shared nav.
+   Imported by assets/css/home.scss and assets/css/main.scss. */
+:root {
+  --accent: #28699b;
+  --accent-strong: #1d5480;
+  --accent-soft: rgba(40, 105, 155, 0.1);
+  --accent-glow: rgba(40, 105, 155, 0.22);
+  --gold: #cfb991;
+  --ink: #0f172a;
+  --ink-2: #334155;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --bg: #ffffff;
+  --bg-alt: #f6f8fb;
+  --card: #ffffff;
+  --nav-bg: rgba(255, 255, 255, 0.82);
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 2px 4px rgba(15, 23, 42, 0.04), 0 18px 40px rgba(15, 23, 42, 0.1);
+  --radius: 18px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --nav-h: 64px;
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+html[data-theme="dark"] {
+  --accent: #5aa6dc;
+  --accent-strong: #7dbbe6;
+  --accent-soft: rgba(90, 166, 220, 0.12);
+  --accent-glow: rgba(90, 166, 220, 0.2);
+  --ink: #e6edf6;
+  --ink-2: #c3cfdd;
+  --muted: #8fa0b5;
+  --line: #1f2b3d;
+  --bg: #0b111c;
+  --bg-alt: #0f1725;
+  --card: #121c2c;
+  --nav-bg: rgba(11, 17, 28, 0.8);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 2px 4px rgba(0, 0, 0, 0.3), 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* Smooth cross-page fades (profile switch, nav between pages) in browsers that support it. */
+@view-transition {
+  navigation: auto;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.35s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}

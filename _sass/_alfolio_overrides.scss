@@ -1,0 +1,35 @@
+/* Align al-folio pages (CV, project pages, news, ...) with the redesigned site:
+   same colors, font and nav height. Imported after "themes" in main.scss. */
+:root,
+html[data-theme="light"],
+html[data-theme="dark"] {
+  --global-bg-color: var(--bg);
+  --global-text-color: var(--ink-2);
+  --global-text-color-light: var(--muted);
+  --global-theme-color: var(--accent);
+  --global-hover-color: var(--accent-strong);
+  --global-hover-text-color: #fff;
+  --global-card-bg-color: var(--card);
+  --global-divider-color: var(--line);
+  --global-footer-bg-color: var(--bg-alt);
+  --global-footer-text-color: var(--muted);
+  --global-footer-link-color: var(--accent);
+}
+body {
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+body.fixed-top-nav {
+  padding-top: var(--nav-h);
+}
+body h1,
+body h2,
+body h3,
+body h4 {
+  color: var(--ink);
+  letter-spacing: -0.015em;
+}
+footer.fixed-bottom,
+footer.sticky-bottom {
+  border-top: 1px solid var(--line);
+}
