@@ -21,12 +21,16 @@ Personal academic/job-market website for Soumyadeep Chandra (Ph.D. candidate, EC
   - `_pages/projects.md` (Research page, permalink `/research/`) uses categories containing `&`; anchors use `slugify`.
   - `_includes/news.liquid`: the date format was changed to `'%b %Y'` (month-year only).
 
-## Home page redesign (2026-11-09)
-- The home page (`_pages/about.md`, `layout: home`) is a standalone single-page layout whose section flow follows https://vinaykenny.com: nav with scroll-progress bar, hero, stats, about, background timeline, filterable research cards, skills, publication cards, news, contact. Other pages (CV, Publications, Research, project pages) still use al-folio.
-- Files: `_layouts/home.liquid`, `_layouts/bib_card.liquid` (jekyll-scholar template for publication cards), `_includes/pub_image.liquid`, `assets/css/home.scss` (no Bootstrap; imports only Font Awesome), `assets/js/home.js`.
-- Text such as the hero, stats, skills and research filter labels is in the front matter of `_pages/about.md`. Education, experience and honors come from `_data/cv.yml`. Project cards use `paper`, `venue`, `result` and `tools` from each `_projects/*.md`.
-- **Paper images:** put one image per paper at `assets/img/publication_preview/<bibkey>.png` (or .jpg/.webp/.gif). It shows on the publication card and on the matching project card. Papers without an image get a gradient placeholder. Keys: chandra2026therm3d, chandra2025thermal, chandra2025remap, alwis2026loss, chandra2025viper, chowdhury2024opel, chowdhury2024visual, chandra2023axonal, mazumder2022hadamard.
-- PurgeCSS runs on the built CSS: any class that home.js adds must appear as a literal string in the JS, or its styles get stripped.
+## Site structure (as of 2026-11-10)
+- **Three home profiles** switched from the top-left of the nav: Both (`/`, `_pages/about.md`), Thermal (`/thermal/`), Video (`/video/`). All use `_layouts/home.liquid`. All profile text (eyebrow, headline, lede, bio, contact tagline, skills order, research filter default) is in `_data/profiles.yml`. The visitor's last profile is remembered in localStorage (`profile`).
+- **Shared nav** `_includes/site_nav.liquid` + `assets/js/site-nav.js` + `_sass/_sitenav.scss` is used on every page, including al-folio pages (`_layouts/default.liquid`, `distill.liquid`). Its theme button has id `light-toggle`, so al-folio's theme.js drives it on al-folio pages.
+- **Shared colors** are in `_sass/_brand.scss` (tokens). `_sass/_alfolio_overrides.scss` maps al-folio's `--global-*` variables onto them so the CV, project and news pages match.
+- **Shell pages** (`_layouts/shell.liquid`, CSS `assets/css/home.scss`, JS `assets/js/home.js`): the home profiles and Publications (`_layouts/pubs.liquid`). Publications has topic tabs (Thermal / Video / Earlier Work) driven by a `topic={...}` field in each bib entry, with year sections.
+- Project cards show a short author line from `_layouts/bib_short.liquid` ("**Chandra** et al." or "First, **Chandra** et al.").
+- News items have `kind: paper|award` and an optional `date_label` (shows the year only when the month is unknown).
+- **Paper images:** put one image per paper at `assets/img/publication_preview/<bibkey>.png` (or .jpg/.webp/.gif). It appears on the publication card and the matching project card. Keys: chandra2026therm3d, chandra2025thermal, chandra2025remap, alwis2026loss, chandra2025viper, chowdhury2024opel, chowdhury2024visual, chandra2023axonal, mazumder2022hadamard.
+- PurgeCSS runs on the built CSS: any class that JS adds must appear as a literal string in the JS, or its styles get stripped.
+- News dates to confirm: Therm3D under review ("2026"), Magoon award ("2022"), PwC award ("2019"); OPEL acceptance is set to Sep 2024 (NeurIPS 2024 decision date).
 
 ## Files customized (everything else is stock al-folio)
 - `_config.yml`: name, description, keywords, favicon 🔥, url `https://soumyadeepchandra.github.io`, scholar last_name [Chandra] / first_name [Soumyadeep, S.], jekyll_get_json disabled.
