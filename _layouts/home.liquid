@@ -98,7 +98,7 @@ layout: shell
           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M21.4 10.9a1 1 0 0 0 0-1.8l-8.6-3.9a2 2 0 0 0-1.7 0L2.6 9.1a1 1 0 0 0 0 1.8l8.6 3.9a2 2 0 0 0 1.7 0Z"/><path d="M22 10v6M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
           Education
         </h3>
-        <ol class="timeline">
+        <ol class="timeline m-box">
           {% for e in edu.contents %}
             <li class="tl-item" data-reveal data-dir="left">
               <span class="tl-dot" aria-hidden="true"></span>
@@ -117,7 +117,7 @@ layout: shell
           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.5 12.9 17 22l-5-3-5 3 1.5-9.1"/></svg>
           Honors &amp; Service
         </h3>
-        <ul class="honors">
+        <ul class="honors m-box">
           {% for h in honors.contents %}
             <li data-reveal><span class="honor-year">{{ h.year }}</span><span>{{ h.title }}</span></li>
           {% endfor %}
@@ -133,7 +133,7 @@ layout: shell
           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect x="2" y="6" width="20" height="14" rx="2"/></svg>
           Experience
         </h3>
-        <ol class="timeline">
+        <ol class="timeline m-box">
           {% assign exp_groups = '' | split: '' %}
           {% if research_exp %}{% assign exp_groups = exp_groups | push: research_exp %}{% endif %}
           {% if teaching %}{% assign exp_groups = exp_groups | push: teaching %}{% endif %}
@@ -158,10 +158,33 @@ layout: shell
   </div>
 </section>
 
+<!-- ============ NEWS (full timeline) ============ -->
+<section class="section section-alt" id="news">
+  <div class="container">
+    <header class="section-head" data-reveal>
+      <span class="kicker">Timeline</span>
+      <h2 class="section-title">News</h2>
+    </header>
+    {% assign news = site.news | sort: 'date' | reverse %}
+    <ol class="news-tl m-box">
+      {% for item in news %}
+        <li class="news-item news-item--{{ item.kind | default: 'paper' }}" data-reveal data-dir="left">
+          <span class="news-dot" aria-hidden="true"></span>
+          <time datetime="{{ item.date | date_to_xmlschema }}">{% if item.date_label %}{{ item.date_label }}{% else %}{{ item.date | date: '%b %Y' }}{% endif %}</time>
+          <div class="news-card">
+            {% if item.kind == 'award' %}<span class="news-kind">Award</span>{% else %}<span class="news-kind">Paper</span>{% endif %}
+            <div class="news-text">{% if item.inline %}{{ item.content | remove: '<p>' | remove: '</p>' | emojify }}{% else %}<a href="{{ item.url | relative_url }}">{{ item.title }}</a>{% endif %}</div>
+          </div>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
 <!-- ============ RESEARCH ============ -->
 {%- capture authmap -%}{% bibliography --group_by none --template bib_short %}{%- endcapture -%}
 {%- assign auth_parts = authmap | split: '@@' -%}
-<section class="section section-alt" id="research">
+<section class="section" id="research">
   <div class="container">
     <header class="section-head section-head--center" data-reveal>
       <span class="kicker">Research Portfolio</span>
@@ -177,7 +200,7 @@ layout: shell
       {% endfor %}
     </div>
 
-    <div class="proj-grid" data-filter-grid>
+    <div class="proj-grid m-box" data-filter-grid>
       {% assign projects = site.projects | sort: 'importance' %}
       {% for ck in prof.research_order %}
         {% assign c = data.categories[ck] %}
@@ -219,29 +242,6 @@ layout: shell
         {% endfor %}
       {% endfor %}
     </div>
-  </div>
-</section>
-
-<!-- ============ NEWS (full timeline) ============ -->
-<section class="section" id="news">
-  <div class="container">
-    <header class="section-head" data-reveal>
-      <span class="kicker">Timeline</span>
-      <h2 class="section-title">News</h2>
-    </header>
-    {% assign news = site.news | sort: 'date' | reverse %}
-    <ol class="news-tl">
-      {% for item in news %}
-        <li class="news-item news-item--{{ item.kind | default: 'paper' }}" data-reveal data-dir="left">
-          <span class="news-dot" aria-hidden="true"></span>
-          <time datetime="{{ item.date | date_to_xmlschema }}">{% if item.date_label %}{{ item.date_label }}{% else %}{{ item.date | date: '%b %Y' }}{% endif %}</time>
-          <div class="news-card">
-            {% if item.kind == 'award' %}<span class="news-kind">Award</span>{% else %}<span class="news-kind">Paper</span>{% endif %}
-            <div class="news-text">{% if item.inline %}{{ item.content | remove: '<p>' | remove: '</p>' | emojify }}{% else %}<a href="{{ item.url | relative_url }}">{{ item.title }}</a>{% endif %}</div>
-          </div>
-        </li>
-      {% endfor %}
-    </ol>
   </div>
 </section>
 

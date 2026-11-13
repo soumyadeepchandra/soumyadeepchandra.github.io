@@ -361,6 +361,39 @@ html[data-theme="dark"] .badge { color: #08111d; }
   .pub-body { padding: 20px; }
 }
 
+/* ---------- Phone: compact scroll boxes ----------
+   News, Education, Honors, Experience and Research become bordered boxes with their own scrollbar;
+   the first ("prime") item in each is highlighted. Skill chips become one scrollable row. */
+@media (max-width: 720px) {
+  .m-box {
+    max-height: 24rem; overflow-y: auto; -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--line); border-radius: 16px; padding: 12px 12px 4px;
+    scrollbar-width: thin; scrollbar-color: var(--accent) transparent;
+  }
+  .m-box::-webkit-scrollbar { width: 5px; }
+  .m-box::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 5px; }
+  .m-box::-webkit-scrollbar-track { background: transparent; }
+  .timeline.m-box { padding-left: 34px; }
+  .news-tl.m-box { padding-left: 38px; }
+  .timeline.m-box::before, .news-tl.m-box::before { display: none; }
+  .honors.m-box { max-height: 16rem; padding-bottom: 12px; }
+  .proj-grid.m-box { max-height: 34rem; padding: 12px; gap: 16px; }
+  .proj-card:hover, .tl-card:hover, .news-card:hover, .skill-card:hover { transform: none; }
+
+  .timeline > .tl-item:first-child .tl-card,
+  .news-tl > .news-item:first-child .news-card,
+  .honors > li:first-child,
+  .proj-grid > .proj-card:first-child {
+    border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), var(--shadow);
+  }
+  .news-tl > .news-item:first-child .news-dot { background: var(--accent); }
+
+  .skill-chips { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; scrollbar-color: var(--accent) transparent; }
+  .skill-chips span { flex: 0 0 auto; }
+  .skill-chips span:first-child { background: var(--accent); color: #fff; font-weight: 600; }
+  html[data-theme="dark"] .skill-chips span:first-child { color: #08111d; }
+}
+
 /* ---------- Motion ---------- */
 @keyframes rise { from { opacity: 0; transform: translate3d(0, 28px, 0); } to { opacity: 1; transform: none; } }
 @keyframes pop { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: none; } }
