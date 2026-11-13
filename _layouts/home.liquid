@@ -196,7 +196,7 @@ layout: shell
       <button type="button" class="filter{% if prof.research_default == 'all' %} is-active{% endif %}" data-filter="all" aria-pressed="{% if prof.research_default == 'all' %}true{% else %}false{% endif %}">All</button>
       {% for ck in prof.research_order %}
         {% assign c = data.categories[ck] %}
-        <button type="button" class="filter{% if prof.research_default == ck %} is-active{% endif %}" data-filter="{{ c.key | slugify }}" aria-pressed="{% if prof.research_default == ck %}true{% else %}false{% endif %}">{{ c.label }}</button>
+        <button type="button" class="filter{% if prof.research_default == ck %} is-active{% endif %}" data-filter="{{ c.key | slugify }}" aria-pressed="{% if prof.research_default == ck %}true{% else %}false{% endif %}"><span class="lbl-full">{{ c.label }}</span><span class="lbl-short">{{ c.short }}</span></button>
       {% endfor %}
     </div>
 

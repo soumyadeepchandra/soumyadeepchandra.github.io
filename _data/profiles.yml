@@ -18,9 +18,11 @@ categories:
   thermal:
     key: thermal modeling & AI for hardware
     label: Thermal Modeling & AI for Hardware
+    short: Thermal
   video:
     key: video & scene understanding
     label: Video & Scene Understanding
+    short: Video
 
 both:
   label: Both

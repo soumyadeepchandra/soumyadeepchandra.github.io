@@ -208,11 +208,15 @@ html[data-theme="dark"] .filter.is-active { color: #08111d; }
   box-shadow: 0 6px 16px var(--accent-glow);
   transition: transform 0.5s var(--ease), width 0.5s var(--ease), height 0.5s var(--ease);
 }
-/* Phones: one compact row that scrolls sideways instead of stacking. */
+.lbl-short { display: none; }
+/* Phones: short labels in one compact row (scrolls sideways if it ever overflows). */
 @media (max-width: 640px) {
   .filters { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; scrollbar-width: none; margin-bottom: 24px; }
   .filters::-webkit-scrollbar { display: none; }
   .filter { flex: 0 0 auto; padding: 8px 14px; font-size: 13.5px; }
+  .lbl-full { display: none; }
+  .lbl-short { display: inline; }
+  .filters { margin-left: auto; margin-right: auto; }
 }
 
 /* ---------- Research cards ---------- */
