@@ -18,22 +18,22 @@ layout: shell
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
   <div class="hero-bg" aria-hidden="true"></div>
+  {%- comment -%}
+    Children are flat grid items so phones can reorder them:
+    desktop = text column + photo column; phone = name, subtitle, photo + icons, then the rest.
+  {%- endcomment %}
   <div class="container hero-grid">
-    <div class="hero-copy">
-      <span class="eyebrow hero-in" style="--d: 0s">{{ prof.eyebrow }}</span>
-      <h1 class="hero-title hero-in" style="--d: .08s">{{ full_name }}</h1>
-      <p class="hero-headline hero-in" style="--d: .16s">{{ prof.headline }}</p>
-      <p class="hero-lede hero-in" style="--d: .24s">{{ prof.lede }}</p>
-      <div class="hero-ctas hero-in" style="--d: .32s">
-        <a class="btn btn-primary" href="#research">
-          View research
-          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-        <a class="btn btn-ghost" href="{{ '/publications/' | relative_url }}">Publications</a>
-      </div>
-      <ul class="affil hero-in" style="--d: .4s" aria-label="Affiliations">
-        {% for a in data.affiliations %}<li>{{ a }}</li>{% endfor %}
-      </ul>
+    <span class="eyebrow hero-in" style="--d: 0s">{{ prof.eyebrow }}</span>
+    <h1 class="hero-title hero-in" style="--d: .06s">{{ full_name }}</h1>
+    <p class="hero-sub hero-in" style="--d: .12s">{{ data.subtitle }}</p>
+    <p class="hero-headline hero-in" style="--d: .18s">{{ prof.headline }}</p>
+    <p class="hero-lede hero-in" style="--d: .24s">{{ prof.lede }}</p>
+    <div class="hero-ctas hero-in" style="--d: .3s">
+      <a class="btn btn-primary" href="#research">
+        View research
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="{{ '/publications/' | relative_url }}">Publications</a>
     </div>
     <div class="hero-side hero-pop">
       <div class="hero-photo">
@@ -260,12 +260,11 @@ layout: shell
           {{ socials.email }}
         </a>
       {% endif %}
-      <div class="contact-socials">
-        {% if socials.linkedin_username %}<a class="btn btn-ghost" href="https://www.linkedin.com/in/{{ socials.linkedin_username }}" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>{% endif %}
-        {% if socials.scholar_userid %}<a class="btn btn-ghost" href="https://scholar.google.com/citations?user={{ socials.scholar_userid }}" target="_blank" rel="noopener"><i class="ai ai-google-scholar"></i> Scholar</a>{% endif %}
-        {% if socials.github_username %}<a class="btn btn-ghost" href="https://github.com/{{ socials.github_username }}" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>{% endif %}
-        <a class="btn btn-ghost" href="{{ cv_pdf }}" target="_blank" rel="noopener"><i class="fa-solid fa-file-lines"></i> CV</a>
-      </div>
+      {%- comment -%} 2-column grid: email spans row 1; LinkedIn + Scholar row 2; GitHub + CV row 3. {%- endcomment %}
+      {% if socials.linkedin_username %}<a class="btn btn-ghost" href="https://www.linkedin.com/in/{{ socials.linkedin_username }}" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>{% endif %}
+      {% if socials.scholar_userid %}<a class="btn btn-ghost" href="https://scholar.google.com/citations?user={{ socials.scholar_userid }}" target="_blank" rel="noopener"><i class="ai ai-google-scholar"></i> Scholar</a>{% endif %}
+      {% if socials.github_username %}<a class="btn btn-ghost" href="https://github.com/{{ socials.github_username }}" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>{% endif %}
+      <a class="btn btn-ghost" href="{{ cv_pdf }}" target="_blank" rel="noopener"><i class="fa-solid fa-file-lines"></i> CV</a>
     </div>
   </div>
 </section>

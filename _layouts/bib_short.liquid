@@ -2,8 +2,10 @@
 ---
 {%- comment -%}
   Short author line for project cards, emitted as "@@<key>##<html>@@" so home.liquid can look it up.
-  First author is me  -> "Chandra et al."
-  Otherwise           -> "<First author>, Chandra et al."  (my name in bold)
+  Two or fewer authors -> list them all: "Chandra and Roy"
+  First author is me   -> "Chandra et al."
+  Otherwise            -> "<First author>, Chandra et al."  (my name in bold)
+  "et al." only when more than two authors.
 {%- endcomment -%}
 {%- assign authors = entry.author_array -%}
 {%- assign n = authors | size -%}
@@ -16,7 +18,13 @@
   {%- endif -%}
 {%- endfor -%}
 {%- capture out -%}
-  {%- if self_idx == 0 -%}
+  {%- if n <= 2 -%}
+    {%- for author in authors -%}
+      {%- assign nm = author.last | regex_replace: '([*∗†‡§¶‖&^]+)', '<sup>\1</sup>' -%}
+      {%- unless forloop.first %} and {% endunless -%}
+      {%- if forloop.index0 == self_idx -%}<strong>{{ nm }}</strong>{%- else -%}{{ nm }}{%- endif -%}
+    {%- endfor -%}
+  {%- elsif self_idx == 0 -%}
     {%- assign me = authors[0].last | regex_replace: '([*∗†‡§¶‖&^]+)', '<sup>\1</sup>' -%}
     <strong>{{ me }}</strong>{% if n > 1 %} et al.{% endif %}
   {%- elsif self_idx > 0 -%}

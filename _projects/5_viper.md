@@ -9,10 +9,10 @@ related_publications: true
 paper: chandra2025viper
 venue: IEEE Access 2025
 result: Surgical phase recognition from temporal video structure
-tools: [Self-Supervised Learning, Temporal Modeling, PyTorch]
+tools: [Surgical Phase Recognition, Temporal Modeling, Self-Supervised Learning]
 ---
 
-**ViPeR** is a video representation-learning approach for capturing **temporal structure and action-level information** in surgical videos, supporting downstream phase-recognition tasks. It reaches state-of-the-art accuracy on Cholec80 and the more challenging UroSlice dataset. *(IEEE Access, 2025)*
+**ViPeR** is a video representation-learning approach for capturing **temporal structure and action-level information** in surgical videos, supporting downstream phase-recognition tasks. It reaches state-of-the-art accuracy on Cholec80 and the more challenging UroSlice dataset. 
 
 [Paper](https://ieeexplore.ieee.org/document/11078244/) · [Code & dataset](https://github.com/soumyadeepchandra/ViPeR)
 

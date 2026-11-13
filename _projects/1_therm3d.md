@@ -6,9 +6,9 @@ importance: 1
 category: thermal modeling & AI for hardware
 related_publications: true
 paper: chandra2026therm3d
-venue: Under review · DATE
+venue: Under review · DATE 2027
 result: 1.09 °C RMSE, ~10,000–20,000× faster than FEM
-tools: [Neural Operators, COMSOL, PyTorch, Physics-Informed ML]
+tools: [Neural Operators, Physics-Informed ML, COMSOL]
 ---
 
 **Therm3D** is a physics-informed neural operator framework for near-real-time **steady-state and transient thermal analysis** of 3D heterogeneous integration (3DHI) systems. *(Under review)*

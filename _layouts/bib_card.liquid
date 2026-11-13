@@ -23,7 +23,6 @@
     <div class="pub-meta">
       {%- if entry.abbr -%}<span class="badge{% if entry.abbr contains 'Review' %} badge--muted{% endif %}">{{ entry.abbr }}</span>{%- endif -%}
       <span class="pub-year">{{ entry.year }}</span>
-      {%- if entry.selected == 'true' -%}<span class="pub-star" title="Selected publication">Selected</span>{%- endif -%}
     </div>
     <h3 class="pub-title">{{ entry.title }}</h3>
     <p class="pub-authors">

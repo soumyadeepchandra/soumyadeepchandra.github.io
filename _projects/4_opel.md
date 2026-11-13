@@ -8,10 +8,10 @@ related_publications: true
 paper: chowdhury2024opel
 venue: NeurIPS 2024
 result: Procedure learning across first- and third-person video
-tools: [Optimal Transport, Self-Supervised Learning, PyTorch]
+tools: [Optimal Transport, Procedure Learning, Self-Supervised Learning]
 ---
 
-Co-developed **OPEL**, an **optimal-transport-guided procedure-learning framework** that aligns temporally unstructured video demonstrations and learns step-level representations across first- and third-person viewpoints. *(NeurIPS 2024)*
+Co-developed **OPEL**, an **optimal-transport-guided procedure-learning framework** that aligns temporally unstructured video demonstrations and learns step-level representations across first- and third-person viewpoints. 
 
 [Poster & paper](https://neurips.cc/virtual/2024/poster/93812) · [Slides](https://neurips.cc/media/neurips-2024/Slides/93812.pdf)
 

@@ -1,11 +1,11 @@
 # Content for the three home-page profiles (Both / Thermal / Video).
 # Pages: _pages/about.md (both, "/"), _pages/thermal.md ("/thermal/"), _pages/video.md ("/video/").
 
-affiliations:
-  - Purdue University
-  - Nanoelectronics Research Lab (NRL)
-  - Advisor · Prof. Kaushik Roy
-  - Jadavpur University
+# Line under the name in the hero (same wording as the old al-folio home page).
+subtitle: >-
+  Ph.D. Candidate, Electrical and Computer Engineering ·
+  <a href="https://engineering.purdue.edu/NRL/Group" target="_blank" rel="noopener">Nanoelectronics Research Laboratory (NRL)</a>,
+  Purdue University
 
 skills:
   Thermal Modeling: [COMSOL Multiphysics, Cadence Celsius, FEM, Heat Transfer, 3DHI Thermal Modeling]
@@ -25,7 +25,7 @@ categories:
 both:
   label: Both
   path: /
-  eyebrow: Ph.D. Candidate · Purdue ECE · Graduating Spring 2027
+  eyebrow: Graduating Spring 2027 · Open to full-time roles
   headline: Physics-aware AI for <span class="hl">chips</span> and <span class="hl">video</span>.
   lede: >-
     I build models of signals that evolve over space and time: heat spreading through 3D-integrated chips,
@@ -35,10 +35,10 @@ both:
   research_order: [thermal, video]
   research_default: all
   skills_order: [Thermal Modeling, Video & Vision, Machine Learning, EDA & Hardware, Programming]
-  contact_title: Let's talk heat, video and the AI that models both.
+  contact_title: Chips run hot. Videos run long. I model both.
   contact_text: >-
-    I graduate in Spring 2027 and am open to full-time roles in thermal modeling, advanced packaging and
-    AI for hardware, in video and scene understanding, and in teams that need both.
+    I'm finishing my Ph.D. in Spring 2027 and looking for full-time roles in thermal modeling and AI for
+    hardware, in video and scene understanding, and especially where the two meet. Drop me a line.
   bio: |
     I am a Ph.D. candidate in Electrical and Computer Engineering at Purdue University, advised by <a href="https://engineering.purdue.edu/NRL/Group">Prof. Kaushik Roy</a> in the Nanoelectronics Research Laboratory. I received my B.E. (Hons.) in Electronics and Telecommunication Engineering from Jadavpur University, India.
 
@@ -54,7 +54,7 @@ both:
 thermal:
   label: Thermal
   path: /thermal/
-  eyebrow: Ph.D. Candidate · Thermal Modeling & AI for Hardware
+  eyebrow: Thermal Modeling & AI for Hardware
   headline: Fast, physics-aware <span class="hl">thermal modeling</span> for next-generation chips.
   lede: >-
     I build COMSOL finite-element workflows and physics-informed surrogate models that predict chip
@@ -64,10 +64,10 @@ thermal:
   research_order: [thermal, video]
   research_default: thermal
   skills_order: [Thermal Modeling, Machine Learning, EDA & Hardware, Programming, Video & Vision]
-  contact_title: Let's talk thermal, packaging and AI for hardware.
+  contact_title: Know where your chip runs hot, before you build it.
   contact_text: >-
-    I graduate in Spring 2027 and am open to full-time roles in thermal modeling, advanced packaging and
-    AI-driven hardware design.
+    I'm finishing my Ph.D. in Spring 2027 and looking for full-time roles in thermal modeling, advanced
+    packaging and AI-driven hardware design. If heat is your bottleneck, let's talk.
   bio: |
     I am a Ph.D. candidate in Electrical and Computer Engineering at Purdue University, advised by <a href="https://engineering.purdue.edu/NRL/Group">Prof. Kaushik Roy</a> in the Nanoelectronics Research Laboratory. I received my B.E. (Hons.) in Electronics and Telecommunication Engineering from Jadavpur University, India.
 
@@ -83,7 +83,7 @@ thermal:
 video:
   label: Video
   path: /video/
-  eyebrow: Ph.D. Candidate · Video & Scene Understanding
+  eyebrow: Video & Scene Understanding
   headline: Learning structure from <span class="hl">unaligned video</span>.
   lede: >-
     I develop optimal-transport and representation-learning methods that align, segment and audit video,
@@ -92,10 +92,10 @@ video:
   research_order: [video, thermal]
   research_default: video
   skills_order: [Video & Vision, Machine Learning, Programming, Thermal Modeling, EDA & Hardware]
-  contact_title: Let's talk video, procedures and scene understanding.
+  contact_title: Messy video in. Clear, aligned steps out.
   contact_text: >-
-    I graduate in Spring 2027 and am open to full-time roles in video understanding, scene understanding
-    and computer vision.
+    I'm finishing my Ph.D. in Spring 2027 and looking for full-time roles in video understanding, scene
+    understanding and computer vision. If your video holds structure you can't see yet, let's talk.
   bio: |
     I am a Ph.D. candidate in Electrical and Computer Engineering at Purdue University, advised by <a href="https://engineering.purdue.edu/NRL/Group">Prof. Kaushik Roy</a> in the Nanoelectronics Research Laboratory. I received my B.E. (Hons.) in Electronics and Telecommunication Engineering from Jadavpur University, India.
 

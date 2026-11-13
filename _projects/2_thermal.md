@@ -9,10 +9,10 @@ related_publications: true
 paper: chandra2025thermal
 venue: IEEE TCAD 2025
 result: 0.71 °C RMSE, ~200× faster than COMSOL FEM
-tools: [U-Net, COMSOL, PyTorch, Physics-Informed ML]
+tools: [Physics-Informed ML, U-Net, COMSOL]
 ---
 
-**2D-ThermAl** is a physics-informed deep-learning framework for fast **steady-state and transient thermal prediction** of integrated circuits, combining circuit-level power analysis with high-fidelity COMSOL FEM simulations. *(IEEE TCAD, 2025)*
+**2D-ThermAl** is a physics-informed deep-learning framework for fast **steady-state and transient thermal prediction** of integrated circuits, combining circuit-level power analysis with high-fidelity COMSOL FEM simulations.
 
 - Built a dataset of **200+ circuit configurations**, from logic gates to complex workloads.
 - Developed a **hybrid U-Net** with positional embeddings, feature-level fusion, and physics-informed regularization to preserve thermal-diffusion behavior and spatial consistency.
