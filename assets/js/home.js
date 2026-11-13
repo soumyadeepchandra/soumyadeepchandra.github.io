@@ -156,7 +156,7 @@
     if (!tabs.some(function (t) { return t.getAttribute("data-tab") === initial; })) {
       var prof = null;
       try { prof = localStorage.getItem("profile"); } catch (e) {}
-      initial = prof === "video" ? "video" : "thermal";
+      initial = prof === "video" || prof === "thermal" ? prof : "all";
     }
     select(initial, { instant: true });
     keepPill(tabBar);
