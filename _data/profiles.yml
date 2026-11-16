@@ -10,7 +10,7 @@ subtitle: >-
 skills:
   Thermal Modeling: [COMSOL Multiphysics, Cadence Celsius, FEM, Heat Transfer, 3DHI Thermal Modeling]
   Video & Vision: [Optimal Transport, Gromov–Wasserstein, Procedure Learning, Temporal Alignment, Self-Supervised Learning, Surgical Video Analysis]
-  Machine Learning: [PyTorch, TensorFlow, Neural Operators, Physics-Informed ML, Deep Learning]
+  Machine Learning: [Neural Operators, Physics-Informed ML, Deep Learning, PyTorch, TensorFlow]
   EDA & Hardware: [Cadence Virtuoso, HSPICE, Verilog, Synopsys Power Analysis, VLSI Design]
   Programming: [Python, MATLAB, C, C++, Bash, Git, Linux, Numerical Modeling]
 
