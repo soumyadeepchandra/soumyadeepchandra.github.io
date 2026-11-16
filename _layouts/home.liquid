@@ -45,7 +45,7 @@ layout: shell
       </div>
       <div class="hero-social" aria-label="Contact links">
         {% if socials.email %}<a href="mailto:{{ socials.email }}" title="Email" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>{% endif %}
-        {% if socials.scholar_userid %}<a href="https://scholar.google.com/citations?user={{ socials.scholar_userid }}" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar"><i class="ai ai-google-scholar"></i></a>{% endif %}
+        {% if socials.scholar_userid %}<a href="https://scholar.google.com/citations?user={{ socials.scholar_userid }}" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar">{% include icon_scholar.liquid id="-hero" %}</a>{% endif %}
         {% if socials.linkedin_username %}<a href="https://www.linkedin.com/in/{{ socials.linkedin_username }}" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>{% endif %}
         {% if socials.github_username %}<a href="https://github.com/{{ socials.github_username }}" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>{% endif %}
         {% if socials.orcid_id %}<a href="https://orcid.org/{{ socials.orcid_id }}" target="_blank" rel="noopener" title="ORCID" aria-label="ORCID"><i class="ai ai-orcid"></i></a>{% endif %}
@@ -262,7 +262,7 @@ layout: shell
       {% endif %}
       {%- comment -%} 2-column grid: email spans row 1; LinkedIn + Scholar row 2; GitHub + CV row 3. {%- endcomment %}
       {% if socials.linkedin_username %}<a class="btn btn-ghost" href="https://www.linkedin.com/in/{{ socials.linkedin_username }}" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>{% endif %}
-      {% if socials.scholar_userid %}<a class="btn btn-ghost" href="https://scholar.google.com/citations?user={{ socials.scholar_userid }}" target="_blank" rel="noopener"><i class="ai ai-google-scholar"></i> Scholar</a>{% endif %}
+      {% if socials.scholar_userid %}<a class="btn btn-ghost" href="https://scholar.google.com/citations?user={{ socials.scholar_userid }}" target="_blank" rel="noopener">{% include icon_scholar.liquid id="-contact" %} Scholar</a>{% endif %}
       {% if socials.github_username %}<a class="btn btn-ghost" href="https://github.com/{{ socials.github_username }}" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>{% endif %}
       <a class="btn btn-ghost" href="{{ cv_pdf }}" target="_blank" rel="noopener"><i class="fa-solid fa-file-lines"></i> CV</a>
     </div>

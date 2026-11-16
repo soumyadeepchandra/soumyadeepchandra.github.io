@@ -36,6 +36,7 @@ main svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 section[id] { scroll-margin-top: $nav-h + 8px; }
 .nowrap { white-space: nowrap; }
+.icon-scholar { display: inline-block; vertical-align: -0.125em; }
 
 .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
 .skip-link { position: absolute; left: -999px; top: 8px; z-index: 2000; background: var(--card); padding: 8px 14px; border-radius: 8px; }

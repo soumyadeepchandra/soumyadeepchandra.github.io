@@ -1,0 +1,5 @@
+{%- comment -%}
+  Google Scholar logo (cap + head), drawn to match the user-supplied PNG. Sized 1em so it follows font-size.
+  stroke="none" on the group overrides the `main svg { stroke: currentColor }` rule in home.scss.
+{%- endcomment -%}
+<svg class="icon-scholar" viewBox="0 0 554 554" width="1em" height="1em" aria-hidden="true" focusable="false"><defs><clipPath id="gs-head{{ include.id }}"><circle cx="277" cy="392" r="161"/></clipPath></defs><g stroke="none"><path fill="#4285F4" d="M277 0 0 218l277 218z"/><path fill="#356AC3" d="m277 0 277 218-277 218z"/><circle cx="277" cy="392" r="161" fill="#A0C3FF"/><rect x="0" y="0" width="554" height="323" fill="#76A7FA" clip-path="url(#gs-head{{ include.id }})"/></g></svg>
