@@ -31,7 +31,7 @@ Personal academic/job-market website for Soumyadeep Chandra (Ph.D. candidate, EC
 - Home section order: About, Skills, Background, News, Research, Contact (nav matches). On phones (<=720px) elements with class `m-box` (timelines, honors, news, project grid) become scroll boxes with the first item highlighted; skill chips scroll sideways with the first chip highlighted.
 - **CSS gotcha:** the build's minifier mangles `calc(var(--x) + 8px)` into invalid CSS. Don't put `var()` inside `calc()` in `home.scss`; use the Sass `$nav-h` variable instead.
 - News items have `kind: paper|award` and an optional `date_label` (shows the year only when the month is unknown).
-- **Paper images:** put one image per paper at `assets/img/publication_preview/<bibkey>.png` (or .jpg/.webp/.gif). It appears on the publication card and the matching project card. Keys: chandra2026therm3d, chandra2025thermal, chandra2025remap, alwis2026loss, chandra2025viper, chowdhury2024opel, chowdhury2024visual, chandra2023axonal, mazumder2022hadamard.
+- **Paper images (all 9 added 2026-11-16, flattened on white, max 1600px wide):** put one image per paper at `assets/img/publication_preview/<bibkey>.png` (or .jpg/.webp/.gif). It appears on the publication card and the matching project card. Keys: chandra2026therm3d, chandra2025thermal, chandra2025remap, alwis2026loss, chandra2025viper, chowdhury2024opel, chowdhury2024visual, chandra2023axonal, mazumder2022hadamard.
 - PurgeCSS runs on the built CSS: any class that JS adds must appear as a literal string in the JS, or its styles get stripped.
 - News dates to confirm: Therm3D under review ("2026"), Magoon award ("2022"), PwC award ("2019"); OPEL acceptance is set to Sep 2024 (NeurIPS 2024 decision date).
 
